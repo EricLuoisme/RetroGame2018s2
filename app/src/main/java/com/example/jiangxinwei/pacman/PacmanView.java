@@ -59,5 +59,6 @@ public class PacmanView extends View implements Runnable {
     public boolean step(){
         this.invalidate();
         return true;
+
     }
 }
