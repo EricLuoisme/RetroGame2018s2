@@ -9,11 +9,12 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 
-public class PacmanView extends View implements View.OnTouchListener, Runnable {
+public class PacmanView extends View implements Runnable {
     Paint paint;
     Handler repaintHandler;
     Game game;
@@ -22,10 +23,12 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
-        this.setOnTouchListener(this);
+
+//        this.setOnClickListener(this);
+//        this.setButtonSettings();
+
         observers = new ArrayList<GameOver>();
         game = new Game();
-
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 10);
     }
@@ -39,11 +42,6 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
         paint.setColor(Color.BLUE);
         //canvas.drawRect(0.0f*w, 0.25f*h, 1.0f*w, 0.55f*h, paint);
         game.draw(canvas, paint);
-    }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
     }
 
     @Override
