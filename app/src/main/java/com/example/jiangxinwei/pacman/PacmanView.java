@@ -15,10 +15,15 @@ import java.util.ArrayList;
 
 
 public class PacmanView extends View implements Runnable {
+
+    public static final int STEPDELAY = 100;
+
     Paint paint;
     Handler repaintHandler;
     Game game;
     ArrayList<GameOver> observers;
+
+
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -46,6 +51,13 @@ public class PacmanView extends View implements Runnable {
 
     @Override
     public void run() {
+        if (step()) {
+            repaintHandler.postDelayed(this, PacmanView.STEPDELAY);
+        }
+    }
 
+    public boolean step(){
+        this.invalidate();
+        return true;
     }
 }

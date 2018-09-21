@@ -32,16 +32,16 @@ class Game {
     public void touch(String direction) {
         switch (direction){
             case "u":
-                player.pos.y += 0.05f;
-                break;
-            case "d":
                 player.pos.y -= 0.05f;
                 break;
+            case "d":
+                player.pos.y += 0.05f;
+                break;
             case "l":
-                player.pos.x += 0.05f;
+                player.pos.x -= 0.05f;
                 break;
             case "r":
-                player.pos.x -= 0.05f;
+                player.pos.x += 0.05f;
                 break;
         }
     }
