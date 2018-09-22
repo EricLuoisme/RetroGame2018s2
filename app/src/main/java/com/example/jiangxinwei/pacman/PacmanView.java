@@ -19,7 +19,7 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
     Handler repaintHandler;
     Game game;
     ArrayList<GameOver> observers;
-    public static final int STEPDELAY = 100;
+    public static final int STEPDELAY = 1000;
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

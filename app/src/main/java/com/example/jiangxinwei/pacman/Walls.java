@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 
 public class Walls extends ArrayList<Wall> {
+
     public static Walls createWallsHorizon() {
         Walls  wallsH = new Walls();
         //each rows
