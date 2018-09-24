@@ -12,7 +12,7 @@ public class Beans extends ArrayList<Bean> {
     public static Beans createBeans() {
         Beans  beans = new Beans();
         //each rows
-        for(float x = 0.25f; x < 0.99f; x += 0.1f)
+        for(float x = 0.25f; x < 0.9f; x += 0.1f)
         {
             //Log.d("beans", String.valueOf(x));
             Pos p = new Pos(x, 0.1f);
