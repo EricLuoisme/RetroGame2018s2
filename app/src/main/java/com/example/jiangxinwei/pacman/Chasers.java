@@ -19,6 +19,7 @@ public class Chasers extends ArrayList<Chaser> {
     private static final float DISWALLX = 0.05f;
     private static final float DISWALLY = 0.1f;
 
+//    private static final String[] order = {"Left", "Up", "Right", "Down"};
 
     Random random = new Random();
 
@@ -31,10 +32,27 @@ public class Chasers extends ArrayList<Chaser> {
             this.add(new Chaser(new Pos(0.55f, 0.5f)));
         } else {
             for(Chaser chaser: this){
-                ArrayList<String> validMoves = validMove(chaser, walls);
+                ArrayList<String> validMoves = validMove(chaser);
                 System.out.println(validMoves);
+
                 int num = validMoves.size();
                 int index = random.nextInt(num);
+
+//                int num = this.indexOf(chaser);
+//                System.out.println(order[num] + "  " + order.length + "  " + num);
+//                int index = 0;
+//                boolean signal = false;
+//                while(!signal){
+//                    if(validMoves.contains(order[num])){
+//                        System.out.println("yes" + num);
+//                        index = validMoves.indexOf(order[num]);
+//                        signal = true;
+//                    }else{
+//                        num = (num + 1) % CHASERNUM;
+//                    }
+//                }
+                //System.out.println("index: " + index + "validMoves.size: " + validMoves.size());
+
                 switch (validMoves.get(index)){
                     case "Left":
                         chaser.pos.x = chaser.pos.x - CHASERSTEPX;
@@ -65,8 +83,8 @@ public class Chasers extends ArrayList<Chaser> {
         for (Chaser c : this) c.draw(canvas, paint);
     }
 
-    private ArrayList<String> validMove(Chaser chaser, Walls walls){
-        ArrayList<String> position = new ArrayList<String>();
+    private ArrayList<String> validMove(Chaser chaser){
+        ArrayList<String> position = new ArrayList<>();
         position.add("Left");
         position.add("Right");
         position.add("Up");
