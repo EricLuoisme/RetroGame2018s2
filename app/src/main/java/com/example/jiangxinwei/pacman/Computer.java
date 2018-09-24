@@ -67,6 +67,5 @@ public class Computer extends Sprite{
             pos.y = pos.y - 0.2f;
             //Log.d("up", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
-        //Log.d("position", String.valueOf(pos.x) + " " + String.valueOf(pos.y));
     }
 }
