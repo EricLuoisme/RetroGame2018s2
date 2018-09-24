@@ -14,17 +14,17 @@ public class Walls extends ArrayList<Wall> {
             Pos p = new Pos(x, 0.2f);
             wallsH.add(new Wall(p));
         }
-        for(float x = 0.0f; x < 0.95f; x += 0.3f)
+        for(float x = 0.3f; x < 0.95f; x += 0.3f)
         {
             Pos p = new Pos(x, 0.4f);
             wallsH.add(new Wall(p));
         }
-        for(float x = 0.1f; x < 0.95f; x += 0.2f)
+        for(float x = 0.2f; x < 0.95f; x += 0.2f)
         {
             Pos p = new Pos(x, 0.6f);
             wallsH.add(new Wall(p));
         }
-        for(float x = 0.0f; x < 0.95f; x += 0.4f)
+        for(float x = 0.2f; x < 0.95f; x += 0.4f)
         {
             Pos p = new Pos(x, 0.8f);
             wallsH.add(new Wall(p));
