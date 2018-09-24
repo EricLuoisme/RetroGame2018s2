@@ -6,13 +6,14 @@ import android.graphics.Paint;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Beans extends ArrayList<Bean> {
 
     public static Beans createBeans() {
         Beans  beans = new Beans();
         //each rows
-        for(float x = 0.25f; x < 0.99f; x += 0.1f)
+        for(float x = 0.25f; x < 0.9f; x += 0.1f)
         {
             //Log.d("beans", String.valueOf(x));
             Pos p = new Pos(x, 0.1f);
@@ -48,5 +49,13 @@ public class Beans extends ArrayList<Bean> {
 //        Pos p = new Pos(0.5f, 0.1f);
 //        Bean b = new Bean(p);
 //        b.draw(canvas, paint);
+    }
+
+    public void removeEat(Computer c){
+        Iterator<Bean> bean = this.iterator();
+        while (bean.hasNext()) {
+            Bean b = bean.next();
+            if (b.eatby(c)) bean.remove();
+        }
     }
 }

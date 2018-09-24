@@ -56,22 +56,22 @@ public class Chasers extends ArrayList<Chaser> {
                 switch (validMoves.get(index)){
                     case "Left":
                         chaser.pos.x = chaser.pos.x - CHASERSTEPX;
-                        Log.d("Move", "Left");
+                        //Log.d("Move", "Left");
                         break;
 
                     case "Right":
                         chaser.pos.x = chaser.pos.x + CHASERSTEPX;
-                        Log.d("Move", "Right");
+                        //Log.d("Move", "Right");
                         break;
 
                     case "Up":
                         chaser.pos.y = chaser.pos.y - CHASERSTEPY;
-                        Log.d("Move", "Up");
+                        //Log.d("Move", "Up");
                         break;
 
                     case "Down":
                         chaser.pos.y = chaser.pos.y + CHASERSTEPY;
-                        Log.d("Move", "Down");
+                        //Log.d("Move", "Down");
                 }
             }
         }
@@ -79,7 +79,7 @@ public class Chasers extends ArrayList<Chaser> {
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        Log.d("chasers", String.valueOf(this.size()));
+        //Log.d("chasers", String.valueOf(this.size()));
         for (Chaser c : this) c.draw(canvas, paint);
     }
 

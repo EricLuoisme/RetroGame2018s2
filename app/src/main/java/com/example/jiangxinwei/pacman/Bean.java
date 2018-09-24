@@ -15,4 +15,12 @@ public class Bean extends Sprite{
         int w = c.getWidth();
         c.drawCircle(pos.x * w, pos.y * h, 30, p);
     }
+
+    public boolean eatby(Computer c){   //determin if any bean eats by computer
+        boolean eat = false;
+        if(c.pos.distance(pos) < 1.0f/30.0f){
+            eat = true;
+        }
+        return eat;
+    }
 }
