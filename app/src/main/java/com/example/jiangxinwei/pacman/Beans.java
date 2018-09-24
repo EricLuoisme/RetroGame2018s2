@@ -12,28 +12,28 @@ public class Beans extends ArrayList<Bean> {
     public static Beans createBeans() {
         Beans  beans = new Beans();
         //each rows
-        for(float x = 0.05f; x < 0.99f; x += 0.1f)
+        for(float x = 0.25f; x < 0.99f; x += 0.1f)
         {
             //Log.d("beans", String.valueOf(x));
             Pos p = new Pos(x, 0.1f);
             beans.add(new Bean(p));
         }
-        for(float x = 0.05f; x < 1f; x += 0.1f)
+        for(float x = 0.25f; x < 1f; x += 0.1f)
         {
             Pos p = new Pos(x, 0.3f);
             beans.add(new Bean(p));
         }
-        for(float x = 0.05f; x < 1f; x += 0.1f)
+        for(float x = 0.25f; x < 1f; x += 0.1f)
         {
             Pos p = new Pos(x, 0.5f);
             beans.add(new Bean(p));
         }
-        for(float x = 0.05f; x < 1f; x += 0.1f)
+        for(float x = 0.25f; x < 1f; x += 0.1f)
         {
             Pos p = new Pos(x, 0.7f);
             beans.add(new Bean(p));
         }
-        for(float x = 0.05f; x < 1f; x += 0.1f)
+        for(float x = 0.25f; x < 1f; x += 0.1f)
         {
             Pos p = new Pos(x, 0.9f);
             beans.add(new Bean(p));
