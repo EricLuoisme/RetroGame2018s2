@@ -49,7 +49,6 @@ class Game {
                 closeY = b.pos.y;
             }
         }
-        //Log.d("close", String.valueOf(closeX) + " " + String.valueOf(closeY));
 
         //Let computer move;
         computer.step(closeX, closeY);
