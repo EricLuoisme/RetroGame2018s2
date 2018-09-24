@@ -12,6 +12,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
     }
+
     public void playGame(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);

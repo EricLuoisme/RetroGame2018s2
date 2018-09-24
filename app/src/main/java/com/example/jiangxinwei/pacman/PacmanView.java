@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
     Handler repaintHandler;
     Game game;
     ArrayList<GameOver> observers;
+    public static final int STEPDELAY = 1000;
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -48,6 +50,17 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     public void run() {
+        if (step()) {
+            repaintHandler.postDelayed(this, PacmanView.STEPDELAY);
+        }
 
     }
+
+    public boolean step() {
+        game.step();
+
+        this.invalidate();
+        return true;
+    }
+
 }
