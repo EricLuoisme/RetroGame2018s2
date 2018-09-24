@@ -30,7 +30,6 @@ public class Walls extends ArrayList<Wall> {
             Pos p = new Pos(x, 0.8f);
             wallsH.add(new Wall(p));
         }
-
         return wallsH;
     }
 
