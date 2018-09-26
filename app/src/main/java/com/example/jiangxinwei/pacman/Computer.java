@@ -58,7 +58,6 @@ public class Computer extends Sprite{
                 pos.x = pos.x + 0.1f;
                 //Log.d("move", "right");
             }
-            //Log.d("left", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX < pos.x && closeY < pos.y){    //in the left top
             //these two are better choices of direction
