@@ -33,7 +33,7 @@ public class Chasers extends ArrayList<Chaser> {
         } else {
             for(Chaser chaser: this){
                 ArrayList<String> validMoves = validMove(chaser);
-                System.out.println(validMoves);
+                //System.out.println(validMoves);
 
                 int num = validMoves.size();
                 int index = random.nextInt(num);

@@ -43,7 +43,7 @@ public class Beans extends ArrayList<Bean> {
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        Log.d("beans", String.valueOf(this.size()));
+        //Log.d("beans", String.valueOf(this.size()));
         paint.setColor(Color.BLUE);
         for (Bean b: this) b.draw(canvas, paint);
 //        Pos p = new Pos(0.5f, 0.1f);

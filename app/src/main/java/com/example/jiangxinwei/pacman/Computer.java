@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.util.Log;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 
 public class Computer extends Sprite{
@@ -25,7 +26,11 @@ public class Computer extends Sprite{
         c.drawCircle(xc, yc,30, p);
     }
 
-    public void step(Float closeX, Float closeY) {
+    /*The rule for computer move:
+      In order to live longer, the computer first should avoid chaser,
+      then computer always move the closest bean in order to get higher mark.
+    */
+    public void step(Float closeX, Float closeY, ArrayList<String> moveAvoidChaser) {
         DecimalFormat decimalFormat=new DecimalFormat(".00");
         String x = decimalFormat.format(pos.x);
         String y = decimalFormat.format(pos.y);
@@ -36,35 +41,171 @@ public class Computer extends Sprite{
         closeX = Float.parseFloat(x);
         closeY = Float.parseFloat(y);
         if(closeX < pos.x && closeY == pos.y){   //in the left
-            pos.x = pos.x - 0.1f;
+            if(moveAvoidChaser.contains("left")) {    //left is a valid move
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
+            else if(moveAvoidChaser.contains("up"))
+            {
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            else if(moveAvoidChaser.contains("down")){
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            else if(moveAvoidChaser.contains("right")){   //this is the worst case
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
             //Log.d("left", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX < pos.x && closeY < pos.y){    //in the left top
-            pos.x = pos.x - 0.1f;
+            //these two are better choices of direction
+            if(moveAvoidChaser.contains("left")) {
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
+            else if(moveAvoidChaser.contains("up"))
+            {
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            //these two are worse choices of direction
+            else if(moveAvoidChaser.contains("down")){
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            else if(moveAvoidChaser.contains("right")){
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
             //Log.d("left top", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX < pos.x && closeY > pos.y){    //in the left bottom
-            pos.x = pos.x - 0.1f;
+            //these two are better choices of direction
+            if(moveAvoidChaser.contains("left")) {
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
+            else if(moveAvoidChaser.contains("down"))
+            {
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            //these two are worse choices of direction
+            else if(moveAvoidChaser.contains("up")){
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            else if(moveAvoidChaser.contains("right")){
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
             //Log.d("left bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX > pos.x && closeY == pos.y){   //in the right
-            pos.x = pos.x + 0.1f;
+            if(moveAvoidChaser.contains("right")) {
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
+            else if(moveAvoidChaser.contains("up"))
+            {
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            else if(moveAvoidChaser.contains("down")){
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            else if(moveAvoidChaser.contains("left")){ //the worst choice
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "left");
+            }
             //Log.d("right", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX > pos.x && closeY < pos.y){    //in the right top
-            pos.x = pos.x + 0.1f;
+            //these two are better choices of direction
+            if(moveAvoidChaser.contains("right")) {
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
+            else if(moveAvoidChaser.contains("up"))
+            {
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            //these two are worse choices of direction
+            else if(moveAvoidChaser.contains("down")){
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            else if(moveAvoidChaser.contains("left")){
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
             //Log.d("right top", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX > pos.x && closeY > pos.y){    //in the right bottom
-            pos.x = pos.x + 0.1f;
-            Log.d("right bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
+            //these two are better choices of direction
+            if(moveAvoidChaser.contains("right")) {
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
+            else if(moveAvoidChaser.contains("down"))
+            {
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            //these two are worse choices of direction
+            else if(moveAvoidChaser.contains("up")){
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            else if(moveAvoidChaser.contains("left")){
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
+            //Log.d("right bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX == pos.x && closeY > pos.y){   //on the bottom
-            pos.y = pos.y + 0.2f;
+            if(moveAvoidChaser.contains("down")) {
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
+            else if(moveAvoidChaser.contains("left"))
+            {
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
+            else if(moveAvoidChaser.contains("right")){
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
+            else if(moveAvoidChaser.contains("up")){ //the worst choice
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
             //Log.d("bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         else if(closeX == pos.x && closeY < pos.y){   //on the top
-            pos.y = pos.y - 0.2f;
+            if(moveAvoidChaser.contains("up")) {
+                pos.y = pos.y - 0.2f;
+                //Log.d("move", "up");
+            }
+            else if(moveAvoidChaser.contains("left"))
+            {
+                pos.x = pos.x - 0.1f;
+                //Log.d("move", "left");
+            }
+            else if(moveAvoidChaser.contains("right")){
+                pos.x = pos.x + 0.1f;
+                //Log.d("move", "right");
+            }
+            else if(moveAvoidChaser.contains("down")){ //the worst choice
+                pos.y = pos.y + 0.2f;
+                //Log.d("move", "down");
+            }
             //Log.d("up", String.valueOf(closeX) + " " + String.valueOf(closeY));
         }
         //Log.d("position", String.valueOf(pos.x) + " " + String.valueOf(pos.y));
