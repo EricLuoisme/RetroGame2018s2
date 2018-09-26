@@ -14,6 +14,7 @@ class Game {
     private Chasers chasers;
     private Computer computer;
     private boolean computerHitByChaser = false;
+    private boolean beansEmpty = false;   //when there is no beans, then game finished
 
     public static final float MAXXY = 1.0f;
     public static final float MINXY = 0.0f;
@@ -54,17 +55,18 @@ class Game {
                     closeY = b.pos.y;
                 }
             }
-            //Log.d("close", String.valueOf(closeX) + " " + String.valueOf(closeY));
 
-            ArrayList<String> moveAvoidChaser = avoidChaser();   //store the valid move for computer to avoid chaser
-            //Log.d("move", String.valueOf(moveAvoidChaser.size()));
+            //store the valid move for computer to avoid chaser
+            ArrayList<String> moveAvoidChaser = avoidChaser();
 
             //Let computer move;
             computer.step(closeX, closeY, moveAvoidChaser);
 
             //Remove bean which has been eaten
             beans.removeEat(computer);
-            //Log.d("size", String.valueOf(beans.size()));
+
+            //check if computer is hit by chasers
+            computerHitByChaser = computer.hitByChaser(chasers);
         }
     }
 

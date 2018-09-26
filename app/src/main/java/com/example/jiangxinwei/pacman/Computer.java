@@ -26,6 +26,16 @@ public class Computer extends Sprite{
         c.drawCircle(xc, yc,30, p);
     }
 
+    public boolean hitByChaser(Chasers chasers){
+        boolean hit = false;
+        for(Chaser c:chasers){
+            if(c.pos.distance(pos) <= 1.0f/30.0f){
+                hit = true;
+            }
+        }
+        return hit;
+    }
+
     /*The rule for computer move:
       In order to live longer, the computer first should avoid chaser,
       then computer always move the closest bean in order to get higher mark.
