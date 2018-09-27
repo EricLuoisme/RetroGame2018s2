@@ -15,9 +15,12 @@ class Game {
     private Computer computer;
     private boolean computerHitByChaser = false;
     private boolean beansEmpty = false;   //when there is no beans, then game finished
+    private String computerScore = "0";
+    private boolean removed;
 
     public static final float MAXXY = 1.0f;
     public static final float MINXY = 0.0f;
+    public static final int SCOREINCREASE = 10;  //eat one bean, score increases 10
 
 
     public Game()
@@ -30,11 +33,17 @@ class Game {
     }
 
     public void draw(Canvas canvas, Paint paint) {
+        int h = canvas.getHeight();
+        int w = canvas.getWidth();
+        paint.setTextSize(50.0f);
+        canvas.drawText(computerScore, 0.07f*w, 0.2f*h, paint);
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
         chasers.draw(canvas, paint);
-        computer.draw(canvas, paint);
+        if(!computerHitByChaser) {
+            computer.draw(canvas, paint);
+        }
     }
 
     public void step(){
@@ -63,7 +72,10 @@ class Game {
             computer.step(closeX, closeY, moveAvoidChaser);
 
             //Remove bean which has been eaten
-            beans.removeEat(computer);
+            removed = beans.removeEat(computer);
+            if(removed == true){
+                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
+            }
 
             //check if computer is hit by chasers
             computerHitByChaser = computer.hitByChaser(chasers);

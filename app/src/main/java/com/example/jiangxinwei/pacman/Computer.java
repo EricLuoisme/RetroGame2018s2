@@ -36,7 +36,8 @@ public class Computer extends Sprite{
         return hit;
     }
 
-    /*The rule for computer move:
+    /*
+      The rule for computer move:
       In order to live longer, the computer first should avoid chaser,
       then computer always move the closest bean in order to get higher mark.
     */

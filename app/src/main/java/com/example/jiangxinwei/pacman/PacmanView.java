@@ -38,8 +38,11 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
         super.onDraw(canvas);
         int h = canvas.getHeight();
         int w = canvas.getWidth();
-        paint.setColor(Color.BLUE);
-        //canvas.drawRect(0.0f*w, 0.25f*h, 1.0f*w, 0.55f*h, paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(37.0f);
+        paint.setFakeBoldText(true);
+        canvas.drawText("Computer score :", 0.015f*w, 0.1f*h, paint);
+        canvas.drawText("Player score :", 0.015f*w, 0.6f*h, paint);
         game.draw(canvas, paint);
     }
 

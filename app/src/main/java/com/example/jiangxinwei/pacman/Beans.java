@@ -3,7 +3,6 @@ package com.example.jiangxinwei.pacman;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,11 +50,17 @@ public class Beans extends ArrayList<Bean> {
 //        b.draw(canvas, paint);
     }
 
-    public void removeEat(Computer c){
+    public boolean removeEat(Computer c){
+        boolean removed = false;
         Iterator<Bean> bean = this.iterator();
         while (bean.hasNext()) {
             Bean b = bean.next();
-            if (b.eatby(c)) bean.remove();
+            if (b.eatby(c))
+            {
+                bean.remove();
+                removed = true;
+            }
         }
+        return removed;
     }
 }
