@@ -38,10 +38,10 @@ public class GameActivity extends AppCompatActivity {
         Button u = findViewById(R.id.buttonUp);
         u.getBackground().setAlpha(70);
         Button d = findViewById(R.id.buttonDown);
-        u.getBackground().setAlpha(70);
+        d.getBackground().setAlpha(70);
         Button l = findViewById(R.id.buttonLeft);
-        u.getBackground().setAlpha(70);
+        l.getBackground().setAlpha(70);
         Button r = findViewById(R.id.buttonRight);
-        u.getBackground().setAlpha(70);
+        r.getBackground().setAlpha(70);
     }
 }

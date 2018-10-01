@@ -7,6 +7,7 @@ import android.graphics.Paint;
 public class Wall{
     int brown = Color.rgb(139,69,19);
     Pos pos;
+
     public Wall(Pos p){
         pos = new Pos(p);
     }
