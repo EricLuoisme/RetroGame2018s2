@@ -23,15 +23,9 @@ public class PacmanView extends View implements Runnable {
     Game game;
     ArrayList<GameOver> observers;
 
-
-
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
-
-//        this.setOnClickListener(this);
-//        this.setButtonSettings();
-
         observers = new ArrayList<GameOver>();
         game = new Game();
         repaintHandler = new Handler();
@@ -59,6 +53,5 @@ public class PacmanView extends View implements Runnable {
     public boolean step(){
         this.invalidate();
         return true;
-
     }
 }

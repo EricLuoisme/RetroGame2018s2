@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -44,5 +45,9 @@ public class GameActivity extends AppCompatActivity {
         u.getBackground().setAlpha(70);
         Button r = findViewById(R.id.buttonRight);
         u.getBackground().setAlpha(70);
+    }
+
+    public void testToast(){
+        Toast.makeText(getApplicationContext(),"oh no", Toast.LENGTH_LONG);
     }
 }

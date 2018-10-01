@@ -3,6 +3,8 @@ package com.example.jiangxinwei.pacman;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+import android.widget.Toast;
 
 class Game {
     private Walls wallsHorizon;
@@ -24,24 +26,47 @@ class Game {
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
-
-        player_use = new Paint(Color.GREEN);
-        player.draw(canvas, player_use);
+        player.draw(canvas, paint);
     }
 
     public void touch(String direction) {
-        switch (direction){
+
+        switch (direction) {
             case "u":
                 player.pos.y -= 0.05f;
+//                for (Wall w : wallsHorizon) {
+//
+//                }
                 break;
+
             case "d":
                 player.pos.y += 0.05f;
+//                for (Wall w : wallsHorizon) {
+//                    if (w.pos.y - player.pos.y <= 0){
+//                        player.pos.y -= 0.05f;
+//                        break;
+//                    }
+//                }
                 break;
+
             case "l":
                 player.pos.x -= 0.05f;
+//                for (Wall w : wallsVertic) {
+//                    if (w.pos.x + 0.01f - player.pos.x >= 0){
+//                        player.pos.x += 0.05f;
+//                        break;
+//                    }
+//                }
                 break;
+
             case "r":
                 player.pos.x += 0.05f;
+//                for (Wall w : wallsVertic) {
+//                    if (w.pos.x - player.pos.x <= 0){
+//                        player.pos.x -= 0.05f;
+//                        break;
+//                    }
+//                }
                 break;
         }
     }
