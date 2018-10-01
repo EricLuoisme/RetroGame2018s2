@@ -6,7 +6,7 @@ import android.graphics.Paint;
 
 public class Player extends Sprite {
 
-    public static final float PWIDTH = (1.0f / 50.0f);
+    public static final float PWIDTH = (1.0f / 55.0f);
     public static final float STARTX = 0.45f;
     public static final float STARTY = 0.5f;
 
@@ -29,8 +29,5 @@ public class Player extends Sprite {
         return new Player();
     }
 
-    public boolean hitWalls(Pos p){
-        return true;
-    }
 }
 

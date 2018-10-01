@@ -131,22 +131,56 @@ class Game {
     public void touch(String direction) {
         switch (direction) {
             case "u":
-                if (player.hitWalls(player.pos))
+                if (!hitBoundary(player.pos, 'u')) {
                     player.pos.y -= 0.2f;
+                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
+                }
                 break;
             case "d":
-                if (player.hitWalls(player.pos))
+                if (!hitBoundary(player.pos, 'd')) {
                     player.pos.y += 0.2f;
+                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
+                }
                 break;
             case "l":
-                if (player.hitWalls(player.pos))
+                if (!hitBoundary(player.pos, 'l')) {
                     player.pos.x -= 0.1f;
+                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
+                }
                 break;
             case "r":
-                if (player.hitWalls(player.pos))
+                if (!hitBoundary(player.pos, 'r')) {
                     player.pos.x += 0.1f;
+                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
+                }
                 break;
         }
+    }
+
+    public boolean hitWalls(Pos pos) {
+        return false;
+    }
+
+    public boolean hitBoundary(Pos pos, char direction) {
+        switch (direction) {
+            case 'u':
+                if (pos.y - 0.2f < 0.1)
+                    return true;
+                break;
+            case 'd':
+                if (pos.y + 0.2f > 0.9)
+                    return true;
+                break;
+            case 'l':
+                if (pos.x - 0.05f < 0.05)
+                    return true;
+                break;
+            case 'r':
+                if (pos.x + 0.05f > 0.95)
+                    return true;
+                break;
+        }
+        return false;
     }
 
 }
