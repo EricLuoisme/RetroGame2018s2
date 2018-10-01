@@ -52,30 +52,37 @@ class Game {
         //computer.step();
         chasers.step();
 
-        if (!computerHitByChaser) {   //computer can move if it has not eaten by chaser
+        if(!computerHitByChaser) {   //computer can move if it has not eaten by chaser
             //Find the closest bean
-            Float closeDis = 2f;
-            Float dis;
+            Float smallestSteps = 50f;
+            Float steps;
             Float closeX = 0f;
             Float closeY = 0f;
+            boolean accepted;
+            //Log.d("computer position", String.valueOf(computer.pos.x) + " " + String.valueOf(computer.pos.y));
             for (Bean b : beans) {
-                dis = computer.pos.distance(b.pos);
-                if (dis < closeDis) {
-                    closeDis = dis;
+                steps = computer.pos.stepCount(b.pos);
+                //Log.d("close", String.valueOf(b.pos.x) + " " + String.valueOf(b.pos.y));
+                accepted = b.noWall(computer, wallsHorizon, wallsVertic);
+                //Log.d("dis", String.valueOf(steps) + " " + String.valueOf(smallestSteps));
+                if (steps < smallestSteps && accepted) {
+                    smallestSteps = steps;
                     closeX = b.pos.x;
                     closeY = b.pos.y;
                 }
             }
+            //Log.d("final close", String.valueOf(closeX) + " " + String.valueOf(closeY));
 
             //store the valid move for computer to avoid chaser
-            ArrayList<String> moveAvoidChaser = avoidChaser();
+            ArrayList<String> moveAvoidChaser = computer.avoidChaser(chasers);
+            ArrayList<String> moveAvoidWall = computer.avoidWall(wallsHorizon, wallsVertic);
 
             //Let computer move;
-            computer.step(closeX, closeY, moveAvoidChaser);
+            computer.step(closeX, closeY, moveAvoidChaser, moveAvoidWall);
 
             //Remove bean which has been eaten
             removed = beans.removeEat(computer);
-            if (removed == true) {
+            if(removed == true){
                 computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
             }
 

@@ -40,12 +40,12 @@ public class Walls extends ArrayList<Wall> {
             Pos p = new Pos(0.2f, y);
             wallsV.add(new Wall(p));
         }
-        for(float y = 0.2f; y < 0.95f; y += 0.2f)
+        for(float y = 0.4f; y < 0.95f; y += 0.2f)
         {
             Pos p = new Pos(0.4f, y);
             wallsV.add(new Wall(p));
         }
-        for(float y = 0.2f; y < 0.95f; y += 0.2f)
+        for(float y = 0.2f; y < 0.75f; y += 0.2f)
         {
             Pos p = new Pos(0.6f, y);
             wallsV.add(new Wall(p));
