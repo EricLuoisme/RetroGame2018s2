@@ -56,7 +56,6 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
         if (step()) {
             repaintHandler.postDelayed(this, PacmanView.STEPDELAY);
         }
-
     }
 
     public boolean step() {

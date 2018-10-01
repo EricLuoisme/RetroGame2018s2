@@ -31,7 +31,6 @@ public class GameActivity extends AppCompatActivity {
             default:
                 pacmanView.game.touch("r");
                 break;
-
         }
     }
 

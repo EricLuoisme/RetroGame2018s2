@@ -13,6 +13,7 @@ class Game {
     private Beans beans;
     private Chasers chasers;
     private Computer computer;
+    private Player player;
     private boolean computerHitByChaser = false;
     private boolean beansEmpty = false;   //when there is no beans, then game finished
     private String computerScore = "0";
@@ -23,34 +24,35 @@ class Game {
     public static final int SCOREINCREASE = 10;  //eat one bean, score increases 10
 
 
-    public Game()
-    {
+    public Game() {
         wallsHorizon = Walls.createWallsHorizon();
         wallsVertic = Walls.createWallsVertic();
         beans = Beans.createBeans();
         chasers = new Chasers();
-        computer =  new Computer();
+        computer = new Computer();
+        player = Player.createPlayer();
     }
 
     public void draw(Canvas canvas, Paint paint) {
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
-        canvas.drawText(computerScore, 0.07f*w, 0.2f*h, paint);
+        canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
         chasers.draw(canvas, paint);
-        if(!computerHitByChaser) {
+        player.draw(canvas, paint);
+        if (!computerHitByChaser) {
             computer.draw(canvas, paint);
         }
     }
 
-    public void step(){
+    public void step() {
         //computer.step();
         chasers.step();
 
-        if(!computerHitByChaser) {   //computer can move if it has not eaten by chaser
+        if (!computerHitByChaser) {   //computer can move if it has not eaten by chaser
             //Find the closest bean
             Float closeDis = 2f;
             Float dis;
@@ -73,7 +75,7 @@ class Game {
 
             //Remove bean which has been eaten
             removed = beans.removeEat(computer);
-            if(removed == true){
+            if (removed == true) {
                 computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
             }
 
@@ -82,16 +84,16 @@ class Game {
         }
     }
 
-    public ArrayList<String> avoidChaser(){      //the computer should avoid chasers
+    public ArrayList<String> avoidChaser() {      //the computer should avoid chasers
         ArrayList<String> validMove = new ArrayList<String>();
         validMove.add("left");
         validMove.add("right");
         validMove.add("up");
         validMove.add("down");
         //Log.d("before move", String.valueOf(validMove.size()));
-        for(Chaser c: chasers){
-            if(c.pos.distance(computer.pos) <= 0.2f){    //computer should not move to the direction of that chaser
-                DecimalFormat decimalFormat=new DecimalFormat(".00");
+        for (Chaser c : chasers) {
+            if (c.pos.distance(computer.pos) <= 0.2f) {    //computer should not move to the direction of that chaser
+                DecimalFormat decimalFormat = new DecimalFormat(".00");
                 String x = decimalFormat.format(computer.pos.x);
                 String y = decimalFormat.format(computer.pos.y);
                 float computerX = Float.parseFloat(x);
@@ -100,36 +102,51 @@ class Game {
                 y = decimalFormat.format(c.pos.y);
                 float chaserX = Float.parseFloat(x);
                 float chaserY = Float.parseFloat(y);
-                if(chaserX < computerX && chaserY == computerY){   //in the left
+                if (chaserX < computerX && chaserY == computerY) {   //in the left
                     validMove.remove("left");
-                }
-                else if(chaserX < computerX && chaserY < computerY){    //in the left top
+                } else if (chaserX < computerX && chaserY < computerY) {    //in the left top
                     validMove.remove("left");
                     validMove.remove("up");
-                }
-                else if(chaserX < computerX && chaserY > computerY){    //in the left bottom
+                } else if (chaserX < computerX && chaserY > computerY) {    //in the left bottom
                     validMove.remove("left");
                     validMove.remove("down");
-                }
-                else if(chaserX > computerX && chaserY == computerY){   //in the right
+                } else if (chaserX > computerX && chaserY == computerY) {   //in the right
                     validMove.remove("right");
-                }
-                else if(chaserX > computerX && chaserY < computerY){    //in the right top
+                } else if (chaserX > computerX && chaserY < computerY) {    //in the right top
                     validMove.remove("right");
                     validMove.remove("up");
-                }
-                else if(chaserX > computerX && chaserY > computerY){    //in the right bottom
+                } else if (chaserX > computerX && chaserY > computerY) {    //in the right bottom
                     validMove.remove("right");
                     validMove.remove("down");
-                }
-                else if(chaserX == computerX && chaserY > computerY){   //on the bottom
+                } else if (chaserX == computerX && chaserY > computerY) {   //on the bottom
                     validMove.remove("down");
-                }
-                else if(chaserX ==computerX && chaserY < computerY){   //on the top
+                } else if (chaserX == computerX && chaserY < computerY) {   //on the top
                     validMove.remove("up");
                 }
             }
         }
         return validMove;
     }
+
+    public void touch(String direction) {
+        switch (direction) {
+            case "u":
+                if (player.hitWalls(player.pos))
+                    player.pos.y -= 0.2f;
+                break;
+            case "d":
+                if (player.hitWalls(player.pos))
+                    player.pos.y += 0.2f;
+                break;
+            case "l":
+                if (player.hitWalls(player.pos))
+                    player.pos.x -= 0.1f;
+                break;
+            case "r":
+                if (player.hitWalls(player.pos))
+                    player.pos.x += 0.1f;
+                break;
+        }
+    }
+
 }
