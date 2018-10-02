@@ -31,5 +31,15 @@ public class Player extends Sprite {
         return new Player();
     }
 
+    public boolean hitByChaser(Chasers chasers){
+        boolean hit = false;
+        for(Chaser c:chasers){
+            if(c.pos.distance(pos) <= 1.0f/30.0f){
+                hit = true;
+            }
+        }
+        return hit;
+    }
+
 }
 

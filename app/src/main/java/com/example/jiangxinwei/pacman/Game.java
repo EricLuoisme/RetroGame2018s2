@@ -15,10 +15,12 @@ class Game {
     private Computer computer;
     private Player player;
     private boolean computerHitByChaser = false;
+    private boolean playerHitByChaser = false;
     private boolean beansEmpty = false;   //when there is no beans, then game finished
     private String computerScore = "0";
+    private String playerScore = "0";
     private boolean removed;
-
+    private char removedBeans; // 'c' is by computer, 'p' is by player, 'e' is still exist
     public static final float MAXXY = 1.0f;
     public static final float MINXY = 0.0f;
     public static final int SCOREINCREASE = 10;  //eat one bean, score increases 10
@@ -38,6 +40,7 @@ class Game {
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
         canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
+        canvas.drawText(playerScore, 0.07f * w, 0.7f * h, paint);
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
@@ -52,7 +55,7 @@ class Game {
         //computer.step();
         chasers.step();
 
-        if(!computerHitByChaser) {   //computer can move if it has not eaten by chaser
+        if (!computerHitByChaser) {   //computer can move if it has not eaten by chaser
             //Find the closest bean
             Float smallestSteps = 50f;
             Float steps;
@@ -81,14 +84,31 @@ class Game {
             computer.step(closeX, closeY, moveAvoidChaser, moveAvoidWall);
 
             //Remove bean which has been eaten
-            removed = beans.removeEat(computer);
-            if(removed == true){
+//            removed = beans.removeEat(computer);
+//            if (removed == true) {
+//                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
+//            }
+
+            removedBeans = beans.removeEatJudge(computer);
+            if (removedBeans == 'c') {
                 computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
             }
 
             //check if computer is hit by chasers
             computerHitByChaser = computer.hitByChaser(chasers);
         }
+
+
+        if (!playerHitByChaser) {
+            removedBeans = beans.removeEatJudge(player);
+            if (removedBeans == 'p') {
+                playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
+            }
+            playerHitByChaser = player.hitByChaser(chasers);
+        } else {
+            Log.d("I've been hit", "I've been hit");
+        }
+
     }
 
     public ArrayList<String> avoidChaser() {      //the computer should avoid chasers
@@ -135,6 +155,12 @@ class Game {
         return validMove;
     }
 
+    /**
+     * responds for pressing moving button
+     * -input only legal with "u", "d", "l", "r"
+     *
+     * @param direction
+     */
     public void touch(String direction) {
         switch (direction) {
             case "u":
@@ -171,12 +197,11 @@ class Game {
     /**
      * Return whether the input item's next position would hit the wall or not
      *
-     * @param pos           item's pos
-     * @param direction     item's moving direction
-     * @param width         item's own width
-     * @param stepLength    item's step length
-     *
-     * @return  true if item's next step would hit the wall
+     * @param pos        item's pos
+     * @param direction  item's moving direction
+     * @param width      item's own width
+     * @param stepLength item's step length
+     * @return true if item's next step would hit the wall
      */
 
     public boolean hitWalls(Pos pos, char direction, float width, float stepLength) {
@@ -209,7 +234,7 @@ class Game {
             case 'l':
                 for (Wall wall : wallsVertic) {
                     // left situation
-                    if (pos.y + width> wall.pos.y && pos.y - width < wall.pos.y + 0.2f)
+                    if (pos.y + width > wall.pos.y && pos.y - width < wall.pos.y + 0.2f)
                         //player y_pos is between the top and bottom wall
                         if (pos.x - width > wall.pos.x + 0.01f)
                             // first, player's position is on the right of this wall
@@ -238,7 +263,6 @@ class Game {
      * @param pos
      * @param direction
      * @param stepLength
-     *
      * @return true it next position would hit the boundary
      */
 
