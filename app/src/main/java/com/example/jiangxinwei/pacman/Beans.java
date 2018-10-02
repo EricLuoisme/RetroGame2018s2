@@ -72,7 +72,6 @@ public class Beans extends ArrayList<Bean> {
     }
 
     public char removeEatJudge(Object o) {
-
         if (o instanceof Player) {
             if (removeEat((Player) o))
                 return 'p';
@@ -80,7 +79,6 @@ public class Beans extends ArrayList<Bean> {
             if (removeEat((Computer) o))
                 return 'c';
         }
-
         return 'e';
     }
 }

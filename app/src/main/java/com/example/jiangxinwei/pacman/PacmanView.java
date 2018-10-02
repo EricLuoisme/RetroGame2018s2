@@ -1,6 +1,7 @@
 package com.example.jiangxinwei.pacman;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,7 +15,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 
-public class PacmanView extends View implements View.OnTouchListener, Runnable {
+public class PacmanView extends View implements Runnable {
     Paint paint;
     Handler repaintHandler;
     Game game;
@@ -24,7 +25,6 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
-        this.setOnTouchListener(this);
         observers = new ArrayList<GameOver>();
         game = new Game();
 
@@ -33,22 +33,35 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
     }
 
     @Override
-    protected void onDraw(Canvas canvas)
-    {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setColor(Color.BLACK);
         paint.setTextSize(37.0f);
         paint.setFakeBoldText(true);
-        canvas.drawText("Computer score :", 0.015f*w, 0.1f*h, paint);
-        canvas.drawText("Player score :", 0.015f*w, 0.6f*h, paint);
+        canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
+        canvas.drawText("Player score :", 0.015f * w, 0.6f * h, paint);
         game.draw(canvas, paint);
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
+    public boolean step() {
+        game.step();
+        if (game.playerWon()) {
+            notifyGameOver();
+            this.getContext().startActivity(new Intent(this.getContext(), WonActivity.class));
+            return false;
+        } else if (game.playerLose()) {
+            notifyGameOver();
+            this.getContext().startActivity(new Intent(this.getContext(), LoseActivity.class));
+            return false;
+        }
+        this.invalidate();
+        return true;
+    }
+
+    private void notifyGameOver() {
+        for (GameOver o : observers) o.gameOver();
     }
 
     @Override
@@ -58,11 +71,8 @@ public class PacmanView extends View implements View.OnTouchListener, Runnable {
         }
     }
 
-    public boolean step() {
-        game.step();
-
-        this.invalidate();
-        return true;
+    public void registerGameOver(GameOver gameover) {
+        observers.add(gameover);
     }
 
 }

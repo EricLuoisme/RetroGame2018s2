@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 class Game {
+
     private Walls wallsHorizon;
     private Walls wallsVertic;
     private Beans beans;
@@ -19,7 +20,7 @@ class Game {
     private boolean beansEmpty = false;   //when there is no beans, then game finished
     private String computerScore = "0";
     private String playerScore = "0";
-    private boolean removed;
+    //    private boolean removed;
     private char removedBeans; // 'c' is by computer, 'p' is by player, 'e' is still exist
     public static final float MAXXY = 1.0f;
     public static final float MINXY = 0.0f;
@@ -98,7 +99,6 @@ class Game {
             computerHitByChaser = computer.hitByChaser(chasers);
         }
 
-
         if (!playerHitByChaser) {
             removedBeans = beans.removeEatJudge(player);
             if (removedBeans == 'p') {
@@ -109,6 +109,9 @@ class Game {
             Log.d("I've been hit", "I've been hit");
         }
 
+//        if (beans.size()==0){
+//
+//        }
     }
 
     public ArrayList<String> avoidChaser() {      //the computer should avoid chasers
@@ -249,7 +252,12 @@ class Game {
                     if (pos.y - width > wall.pos.y && pos.y - width < wall.pos.y + 0.2f)
                         if (pos.x - width < wall.pos.x)
                             if (pos.x + width + stepLength > wall.pos.x)
+                            {
+//                                Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
+//                                Log.d("Wall: ", "x= " + wall.pos.x + " y= " + wall.pos.y);
                                 return true;
+                            }
+
                 }
                 break;
         }
@@ -269,23 +277,50 @@ class Game {
     public boolean hitBoundary(Pos pos, char direction, float stepLength) {
         switch (direction) {
             case 'u':
-                if (pos.y - stepLength < 0.1)
+                if (pos.y - stepLength < 0.09)
                     return true;
                 break;
             case 'd':
-                if (pos.y + stepLength > 0.9)
+                if (pos.y + stepLength > 0.91)
                     return true;
                 break;
             case 'l':
-                if (pos.x - stepLength < 0.05)
+                if (pos.x - stepLength < 0.04)
                     return true;
                 break;
             case 'r':
-                if (pos.x + stepLength > 0.95)
+                if (pos.x + stepLength > 0.96){
+                    Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
                     return true;
+                }
+
                 break;
         }
         return false;
+    }
+
+
+    public boolean playerWon() {
+        if (!playerHitByChaser)
+            if (gameFinished() && Integer.parseInt(playerScore) - Integer.parseInt(computerScore) > 0)
+                return true;
+        return false;
+    }
+
+    public boolean playerLose() {
+        if (playerHitByChaser)
+            return true;
+        else if (gameFinished() && Integer.parseInt(playerScore) - Integer.parseInt(computerScore) < 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean gameFinished() {
+        if (beans.size() == 0)
+            return true;
+        else
+            return false;
     }
 
 }

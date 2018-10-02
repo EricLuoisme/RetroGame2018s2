@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements GameOver {
 
     private PacmanView pacmanView;
 
@@ -14,6 +14,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         pacmanView = (PacmanView) findViewById(R.id.pacmanView);
+        pacmanView.registerGameOver(this);
         buttonsSettings();
     }
 
@@ -43,5 +44,11 @@ public class GameActivity extends AppCompatActivity {
         l.getBackground().setAlpha(70);
         Button r = findViewById(R.id.buttonRight);
         r.getBackground().setAlpha(70);
+    }
+
+    @Override
+    public void gameOver() {
+        setResult(AppCompatActivity.RESULT_OK);
+        finish();
     }
 }
