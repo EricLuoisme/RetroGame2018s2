@@ -90,6 +90,7 @@ class Game {
 //                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
 //            }
 
+            //Remove bean which has been eaten by computer
             removedBeans = beans.removeEatJudge(computer);
             if (removedBeans == 'c') {
                 computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
@@ -100,6 +101,7 @@ class Game {
         }
 
         if (!playerHitByChaser) {
+            //Remove bean which has been eaten by player
             removedBeans = beans.removeEatJudge(player);
             if (removedBeans == 'p') {
                 playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
@@ -109,9 +111,6 @@ class Game {
             Log.d("I've been hit", "I've been hit");
         }
 
-//        if (beans.size()==0){
-//
-//        }
     }
 
     public ArrayList<String> avoidChaser() {      //the computer should avoid chasers
