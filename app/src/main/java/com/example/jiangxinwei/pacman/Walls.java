@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 
 public class Walls extends ArrayList<Wall> {
+
     public static Walls createWallsHorizon() {
         Walls  wallsH = new Walls();
         //each rows
@@ -14,22 +15,21 @@ public class Walls extends ArrayList<Wall> {
             Pos p = new Pos(x, 0.2f);
             wallsH.add(new Wall(p));
         }
-        for(float x = 0.0f; x < 0.95f; x += 0.3f)
+        for(float x = 0.3f; x < 0.95f; x += 0.3f)
         {
             Pos p = new Pos(x, 0.4f);
             wallsH.add(new Wall(p));
         }
-        for(float x = 0.1f; x < 0.95f; x += 0.2f)
+        for(float x = 0.2f; x < 0.95f; x += 0.2f)
         {
             Pos p = new Pos(x, 0.6f);
             wallsH.add(new Wall(p));
         }
-        for(float x = 0.0f; x < 0.95f; x += 0.4f)
+        for(float x = 0.2f; x < 0.95f; x += 0.4f)
         {
             Pos p = new Pos(x, 0.8f);
             wallsH.add(new Wall(p));
         }
-
         return wallsH;
     }
 
@@ -40,12 +40,12 @@ public class Walls extends ArrayList<Wall> {
             Pos p = new Pos(0.2f, y);
             wallsV.add(new Wall(p));
         }
-        for(float y = 0.2f; y < 0.95f; y += 0.2f)
+        for(float y = 0.4f; y < 0.95f; y += 0.2f)
         {
             Pos p = new Pos(0.4f, y);
             wallsV.add(new Wall(p));
         }
-        for(float y = 0.2f; y < 0.95f; y += 0.2f)
+        for(float y = 0.2f; y < 0.75f; y += 0.2f)
         {
             Pos p = new Pos(0.6f, y);
             wallsV.add(new Wall(p));

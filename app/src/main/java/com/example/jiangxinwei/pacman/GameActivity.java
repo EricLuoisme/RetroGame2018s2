@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements GameOver {
 
     private PacmanView pacmanView;
 
@@ -15,6 +15,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         pacmanView = (PacmanView) findViewById(R.id.pacmanView);
+        pacmanView.registerGameOver(this);
         buttonsSettings();
     }
 
@@ -32,7 +33,6 @@ public class GameActivity extends AppCompatActivity {
             default:
                 pacmanView.game.touch("r");
                 break;
-
         }
     }
 
@@ -40,11 +40,17 @@ public class GameActivity extends AppCompatActivity {
         Button u = findViewById(R.id.buttonUp);
         u.getBackground().setAlpha(70);
         Button d = findViewById(R.id.buttonDown);
-        u.getBackground().setAlpha(70);
+        d.getBackground().setAlpha(70);
         Button l = findViewById(R.id.buttonLeft);
-        u.getBackground().setAlpha(70);
+        l.getBackground().setAlpha(70);
         Button r = findViewById(R.id.buttonRight);
-        u.getBackground().setAlpha(70);
+        r.getBackground().setAlpha(70);
+    }
+
+    @Override
+    public void gameOver() {
+        setResult(AppCompatActivity.RESULT_OK);
+        finish();
     }
 
     public void testToast(){

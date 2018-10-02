@@ -18,10 +18,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="488dp"
-        android:layout_marginRight="488dp"
-        android:text="D"
+        android:layout_marginEnd="508dp"
+        android:layout_marginRight="508dp"
         android:onClick="buttonClick"
+        android:text="D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -29,11 +29,11 @@
         android:id="@+id/buttonUp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginEnd="488dp"
-        android:layout_marginRight="488dp"
-        android:text="U"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="508dp"
+        android:layout_marginRight="508dp"
         android:onClick="buttonClick"
+        android:text="U"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

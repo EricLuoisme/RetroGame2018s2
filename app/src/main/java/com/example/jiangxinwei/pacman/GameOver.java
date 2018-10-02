@@ -1,4 +1,5 @@
 package com.example.jiangxinwei.pacman;
 
-interface GameOver {
+public interface GameOver {
+    public void gameOver();
 }

@@ -1,6 +1,7 @@
 package com.example.jiangxinwei.pacman;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,32 +16,52 @@ import java.util.ArrayList;
 
 
 public class PacmanView extends View implements Runnable {
-
-    public static final int STEPDELAY = 100;
-
     Paint paint;
     Handler repaintHandler;
     Game game;
     ArrayList<GameOver> observers;
+    public static final int STEPDELAY = 1000;
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
         observers = new ArrayList<GameOver>();
         game = new Game();
+
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 10);
     }
 
     @Override
-    protected void onDraw(Canvas canvas)
-    {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int h = canvas.getHeight();
         int w = canvas.getWidth();
-        paint.setColor(Color.BLUE);
-        //canvas.drawRect(0.0f*w, 0.25f*h, 1.0f*w, 0.55f*h, paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(37.0f);
+        paint.setFakeBoldText(true);
+        canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
+        canvas.drawText("Player score :", 0.015f * w, 0.6f * h, paint);
         game.draw(canvas, paint);
+    }
+
+    public boolean step() {
+        game.step();
+        if (game.playerWon()) {
+            notifyGameOver();
+            this.getContext().startActivity(new Intent(this.getContext(), WonActivity.class));
+            return false;
+        } else if (game.playerLose()) {
+            notifyGameOver();
+            this.getContext().startActivity(new Intent(this.getContext(), LoseActivity.class));
+            return false;
+        }
+        this.invalidate();
+        return true;
+    }
+
+    private void notifyGameOver() {
+        for (GameOver o : observers) o.gameOver();
     }
 
     @Override
@@ -50,8 +71,8 @@ public class PacmanView extends View implements Runnable {
         }
     }
 
-    public boolean step(){
-        this.invalidate();
-        return true;
+    public void registerGameOver(GameOver gameover) {
+        observers.add(gameover);
     }
+
 }
