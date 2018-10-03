@@ -59,6 +59,69 @@ class Game {
 
         if (!computerHitByChaser) {   //computer can move if it has not eaten by chaser
             //Find the closest bean
+//            Float smallestSteps = 50f;
+//            Float steps;
+//            Float closeX = 0f;
+//            Float closeY = 0f;
+//            boolean accepted;
+//            //Log.d("computer position", String.valueOf(computer.pos.x) + " " + String.valueOf(computer.pos.y));
+//            for (Bean b : beans) {
+//                steps = computer.pos.stepCount(b.pos);
+//                //Log.d("close", String.valueOf(b.pos.x) + " " + String.valueOf(b.pos.y));
+//                accepted = b.noWall(computer, wallsHorizon, wallsVertic);
+//                //Log.d("dis", String.valueOf(steps) + " " + String.valueOf(smallestSteps));
+//                if (steps < smallestSteps && accepted) {
+//                    smallestSteps = steps;
+//                    closeX = b.pos.x;
+//                    closeY = b.pos.y;
+//                }
+//            }
+//            //Log.d("final close", String.valueOf(closeX) + " " + String.valueOf(closeY));
+//
+//            //store the valid move for computer to avoid chaser
+//            ArrayList<String> moveAvoidChaser = computer.avoidChaser(chasers);
+//            ArrayList<String> moveAvoidWall = computer.avoidWall(wallsHorizon, wallsVertic);
+//
+//            //Let computer move;
+//            computer.step(closeX, closeY, moveAvoidChaser, moveAvoidWall);
+//
+//            //Remove bean which has been eaten
+////            removed = beans.removeEat(computer);
+////            if (removed == true) {
+////                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
+////            }
+//
+//            removedBeans = beans.removeEatJudge(computer);
+//            if (removedBeans == 'c') {
+//                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
+//            }
+
+            //check if computer is hit by chasers
+            computerHitByChaser = computer.hitByChaser(chasers);
+        }
+
+        if (!playerHitByChaser) {
+            removedBeans = beans.removeEatJudge(player);
+            if (removedBeans == 'p') {
+                playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
+            }
+            playerHitByChaser = player.hitByChaser(chasers);
+        } else {
+            Log.d("I've been hit", "I've been hit");
+        }
+
+//        if (beans.size()==0){
+//
+//        }
+    }
+
+    /*
+       this function will be call when player moves.
+       for the fairness, player moves one step computer moves one step
+     */
+    public void computerStep() {
+        if (!computerHitByChaser) {   //computer can move if it has not eaten by chaser
+            //Find the closest bean
             Float smallestSteps = 50f;
             Float steps;
             Float closeX = 0f;
@@ -85,11 +148,6 @@ class Game {
             //Let computer move;
             computer.step(closeX, closeY, moveAvoidChaser, moveAvoidWall);
 
-            //Remove bean which has been eaten
-//            removed = beans.removeEat(computer);
-//            if (removed == true) {
-//                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
-//            }
 
             removedBeans = beans.removeEatJudge(computer);
             if (removedBeans == 'c') {
@@ -97,23 +155,10 @@ class Game {
             }
 
             //check if computer is hit by chasers
-            computerHitByChaser = computer.hitByChaser(chasers);
+            //computerHitByChaser = computer.hitByChaser(chasers);
         }
-
-        if (!playerHitByChaser) {
-            removedBeans = beans.removeEatJudge(player);
-            if (removedBeans == 'p') {
-                playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
-            }
-            playerHitByChaser = player.hitByChaser(chasers);
-        } else {
-            Log.d("I've been hit", "I've been hit");
-        }
-
-//        if (beans.size()==0){
-//
-//        }
     }
+
 
     public ArrayList<String> avoidChaser() {      //the computer should avoid chasers
         ArrayList<String> validMove = new ArrayList<String>();
@@ -173,6 +218,7 @@ class Game {
                     player.pos.y -= player.STEPY;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
+                computerStep();
                 break;
             case "d":
                 if (!hitBoundary(player.pos, 'd', player.STEPY) &&
@@ -180,6 +226,7 @@ class Game {
                     player.pos.y += player.STEPY;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
+                computerStep();
                 break;
             case "l":
                 if (!hitBoundary(player.pos, 'l', player.STEPX) &&
@@ -187,6 +234,7 @@ class Game {
                     player.pos.x -= player.STEPX;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
+                computerStep();
                 break;
             case "r":
                 if (!hitBoundary(player.pos, 'r', player.STEPX) &&
@@ -194,6 +242,7 @@ class Game {
                     player.pos.x += player.STEPX;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
+                computerStep();
                 break;
         }
     }
