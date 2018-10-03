@@ -6,7 +6,7 @@ import android.graphics.Paint;
 
 public class Chaser extends Sprite {
 
-    private static final float CHASERRADIUS = (1.0f / 20.0f);
+    private static final float CHASERRADIUS = (1.0f / 55.0f);
 
     public Chaser(Pos p){
         pos = new Pos(p);
@@ -21,6 +21,6 @@ public class Chaser extends Sprite {
         float yc = pos.y * h;
         float cd = CHASERRADIUS * w;
         p.setColor(Color.BLACK);
-        c.drawCircle(xc, yc, 30, p);
+        c.drawCircle(xc, yc, cd, p);
     }
 }

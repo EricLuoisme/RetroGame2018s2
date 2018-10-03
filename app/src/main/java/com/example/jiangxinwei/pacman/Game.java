@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 class Game {
 
-    private Walls wallsHorizon;
-    private Walls wallsVertic;
+    public static Walls wallsHorizon;
+    public static Walls wallsVertic;
     private Beans beans;
     private Chasers chasers;
     private Computer computer;
@@ -25,6 +25,7 @@ class Game {
     public static final float MAXXY = 1.0f;
     public static final float MINXY = 0.0f;
     public static final int SCOREINCREASE = 10;  //eat one bean, score increases 10
+
 
 
     public Game() {
@@ -207,7 +208,7 @@ class Game {
      * @return true if item's next step would hit the wall
      */
 
-    public boolean hitWalls(Pos pos, char direction, float width, float stepLength) {
+    public static boolean hitWalls(Pos pos, char direction, float width, float stepLength) {
 
         switch (direction) {
             case 'u':
