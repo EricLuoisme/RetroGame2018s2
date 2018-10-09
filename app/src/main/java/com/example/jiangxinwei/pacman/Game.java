@@ -38,7 +38,7 @@ class Game {
         player = Player.createPlayer();
     }
 
-    public void draw(Canvas canvas, Paint paint, Bitmap myImage) {
+    public void draw(Canvas canvas, Paint paint, Bitmap computerImage) {
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
@@ -47,10 +47,10 @@ class Game {
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
-        chasers.draw(canvas, paint, myImage);
-        player.draw(canvas, paint, myImage);
+        chasers.draw(canvas, paint, computerImage);
+        player.draw(canvas, paint, computerImage);
         if (!computerHitByChaser) {
-            computer.draw(canvas, paint, myImage);
+            computer.draw(canvas, paint, computerImage);
         }
     }
 

@@ -17,11 +17,9 @@ import java.util.ArrayList;
 
 
 public class Computer extends Sprite{
-
-//    Bitmap myImage;
+    
     public Computer(){
         pos = new Pos(0.95f, 0.1f);
-//        myImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.laptop),100,100,true);
     }
     @Override
     public void draw(Canvas c, Paint p, Bitmap b) {
