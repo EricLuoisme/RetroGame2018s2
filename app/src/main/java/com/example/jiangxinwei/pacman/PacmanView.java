@@ -2,6 +2,8 @@ package com.example.jiangxinwei.pacman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -21,6 +23,7 @@ public class PacmanView extends View implements Runnable {
     Game game;
     ArrayList<GameOver> observers;
     public static final int STEPDELAY = 1000;
+    Bitmap myImage;
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -30,6 +33,7 @@ public class PacmanView extends View implements Runnable {
 
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 10);
+        myImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.laptop),90,90,true);
     }
 
     @Override
@@ -42,7 +46,7 @@ public class PacmanView extends View implements Runnable {
         paint.setFakeBoldText(true);
         canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
         canvas.drawText("Player score :", 0.015f * w, 0.6f * h, paint);
-        game.draw(canvas, paint);
+        game.draw(canvas, paint, myImage);
     }
 
     public boolean step() {

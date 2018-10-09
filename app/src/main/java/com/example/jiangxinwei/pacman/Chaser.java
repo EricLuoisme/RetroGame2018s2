@@ -1,5 +1,6 @@
 package com.example.jiangxinwei.pacman;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,7 +14,7 @@ public class Chaser extends Sprite {
     }
 
     @Override
-    public void draw(Canvas c, Paint p) {
+    public void draw(Canvas c, Paint p, Bitmap b) {
         int h = c.getHeight();
         int w = c.getWidth();
 

@@ -1,5 +1,6 @@
 package com.example.jiangxinwei.pacman;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -37,7 +38,7 @@ class Game {
         player = Player.createPlayer();
     }
 
-    public void draw(Canvas canvas, Paint paint) {
+    public void draw(Canvas canvas, Paint paint, Bitmap myImage) {
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
@@ -46,10 +47,10 @@ class Game {
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
-        chasers.draw(canvas, paint);
-        player.draw(canvas, paint);
+        chasers.draw(canvas, paint, myImage);
+        player.draw(canvas, paint, myImage);
         if (!computerHitByChaser) {
-            computer.draw(canvas, paint);
+            computer.draw(canvas, paint, myImage);
         }
     }
 

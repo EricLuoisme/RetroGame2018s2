@@ -1,21 +1,30 @@
 package com.example.jiangxinwei.pacman;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.util.Log;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+//import static android.support.v4.graphics.drawable.IconCompat.getResources;
+
 
 public class Computer extends Sprite{
 
+//    Bitmap myImage;
     public Computer(){
         pos = new Pos(0.95f, 0.1f);
+//        myImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.laptop),100,100,true);
     }
     @Override
-    public void draw(Canvas c, Paint p) {
+    public void draw(Canvas c, Paint p, Bitmap b) {
         int h = c.getHeight();
         int w = c.getWidth();
 
@@ -23,7 +32,8 @@ public class Computer extends Sprite{
         float yc = pos.y * h;
 
         p.setColor(Color.GREEN);
-        c.drawCircle(xc, yc,30, p);
+        //c.drawCircle(xc, yc,30, p);
+        c.drawBitmap(b, xc, yc, p);
     }
 
     public boolean hitByChaser(Chasers chasers){

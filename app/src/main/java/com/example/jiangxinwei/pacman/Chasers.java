@@ -1,5 +1,6 @@
 package com.example.jiangxinwei.pacman;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -61,9 +62,9 @@ public class Chasers extends ArrayList<Chaser> {
 
     }
 
-    public void draw(Canvas canvas, Paint paint) {
+    public void draw(Canvas canvas, Paint paint, Bitmap b) {
         //Log.d("chasers", String.valueOf(this.size()));
-        for (Chaser c : this) c.draw(canvas, paint);
+        for (Chaser c : this) c.draw(canvas, paint, b);
     }
 
     private ArrayList<String> validMove(Chaser chaser){
