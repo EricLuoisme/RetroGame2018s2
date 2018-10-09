@@ -33,7 +33,7 @@ public class Computer extends Sprite{
 
         p.setColor(Color.GREEN);
         //c.drawCircle(xc, yc,30, p);
-        c.drawBitmap(b, xc, yc, p);
+        c.drawBitmap(b, (xc-0.025f * w), (yc-0.035f * h), p);
     }
 
     public boolean hitByChaser(Chasers chasers){
