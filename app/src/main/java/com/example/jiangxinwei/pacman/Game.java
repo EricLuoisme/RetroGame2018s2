@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 class Game {
 
@@ -38,7 +39,7 @@ class Game {
         player = Player.createPlayer();
     }
 
-    public void draw(Canvas canvas, Paint paint, Bitmap computerImage) {
+    public void draw(Canvas canvas, Paint paint, List<Bitmap> images) {
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
@@ -47,10 +48,10 @@ class Game {
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
         beans.draw(canvas, paint);
-        chasers.draw(canvas, paint, computerImage);
-        player.draw(canvas, paint, computerImage);
+        chasers.draw(canvas, paint, images.get(0));
+        player.draw(canvas, paint, images.get(1));
         if (!computerHitByChaser) {
-            computer.draw(canvas, paint, computerImage);
+            computer.draw(canvas, paint, images.get(2));
         }
     }
 
