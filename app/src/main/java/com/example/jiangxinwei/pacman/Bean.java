@@ -5,13 +5,13 @@ import android.graphics.Paint;
 
 import java.text.DecimalFormat;
 
-public class Bean extends Sprite {
+public class Bean {
 
+    Pos pos;
     public Bean(Pos p) {
         pos = new Pos(p);
     }
 
-    @Override
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();

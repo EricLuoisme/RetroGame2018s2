@@ -1,5 +1,6 @@
 package com.example.jiangxinwei.pacman;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -16,12 +17,6 @@ public class Chasers extends ArrayList<Chaser> {
     private static final float CHASERMAXX = 0.95f;
     private static final float CHASERMINY = 0.1f;
     private static final float CHASERMAXY = 0.9f;
-    private static final float DISWALLX = 0.05f;
-    private static final float DISWALLY = 0.1f;
-
-    public static final float PWIDTH = (1.0f / 55.0f);
-
-//    private static final String[] order = {"Left", "Up", "Right", "Down"};
 
     Random random = new Random();
 
@@ -32,7 +27,6 @@ public class Chasers extends ArrayList<Chaser> {
         } else {
             for(Chaser chaser: this){
                 ArrayList<String> validMoves = validMove(chaser);
-                //System.out.println(validMoves + Integer.toString(validMoves.size()));
 
                 int num = validMoves.size();
                 int index = random.nextInt(num);
@@ -61,9 +55,8 @@ public class Chasers extends ArrayList<Chaser> {
 
     }
 
-    public void draw(Canvas canvas, Paint paint) {
-        //Log.d("chasers", String.valueOf(this.size()));
-        for (Chaser c : this) c.draw(canvas, paint);
+    public void draw(Canvas canvas, Paint paint, Bitmap b) {
+        for (Chaser c : this) c.draw(canvas, paint, b);
     }
 
     private ArrayList<String> validMove(Chaser chaser){
@@ -77,33 +70,22 @@ public class Chasers extends ArrayList<Chaser> {
         Pos after;
         after = new Pos(chaser.pos.x - CHASERSTEPX / 2, chaser.pos.y);
         if(outBoundary(after) || hitVerticWalls(after)){
-        //if(outBoundary(after) || hitWalls(current, after)){
             position.remove("Left");
-            //System.out.println("Remove Left");
         }
 
         after = new Pos(chaser.pos.x + CHASERSTEPX / 2, chaser.pos.y);
-        //if(outBoundary(p) || hitWalls(p)){
-        //if(outBoundary(after) || hitWalls(current, after)){
         if(outBoundary(after) || hitVerticWalls(after)){
             position.remove("Right");
-            //System.out.println("Remove Right");
         }
 
         after = new Pos(chaser.pos.x, chaser.pos.y - CHASERSTEPY / 2);
-        //if(outBoundary(p) || hitWalls(p)){
-        //if(outBoundary(after) || hitWalls(current, after)){
         if(outBoundary(after) || hitHorizonWalls(after)){
             position.remove("Up");
-            //System.out.println("Remove Up");
         }
 
         after = new Pos(chaser.pos.x, chaser.pos.y + CHASERSTEPY / 2);
-//        if(outBoundary(p) || hitWalls(p)){
-        //if(outBoundary(after) || hitWalls(current, after)){
         if(outBoundary(after) || hitHorizonWalls(after)){
             position.remove("Down");
-            //System.out.println("Remove Down");
         }
 
         return position;

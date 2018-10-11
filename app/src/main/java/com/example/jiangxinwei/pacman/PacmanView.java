@@ -2,6 +2,8 @@ package com.example.jiangxinwei.pacman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class PacmanView extends View implements Runnable {
@@ -21,6 +24,7 @@ public class PacmanView extends View implements Runnable {
     Game game;
     ArrayList<GameOver> observers;
     public static final int STEPDELAY = 1000;
+    Bitmap computerImage, chaserImage;
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -30,6 +34,8 @@ public class PacmanView extends View implements Runnable {
 
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 10);
+        computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.computer),90,90,true);
+        chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.chaser),95,95,true);
     }
 
     @Override
@@ -42,7 +48,11 @@ public class PacmanView extends View implements Runnable {
         paint.setFakeBoldText(true);
         canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
         canvas.drawText("Player score :", 0.015f * w, 0.6f * h, paint);
-        game.draw(canvas, paint);
+        List<Bitmap> images = new ArrayList<>();
+        images.add(chaserImage);
+        images.add(computerImage);
+        images.add(computerImage);
+        game.draw(canvas, paint,images);
     }
 
     public boolean step() {
