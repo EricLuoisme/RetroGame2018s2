@@ -23,6 +23,6 @@ public class Chaser extends Sprite {
         float cd = CHASERRADIUS * w;
         p.setColor(Color.BLACK);
         //c.drawCircle(xc, yc, cd, p);
-        c.drawBitmap(b, (xc-0.025f * w), (yc-0.035f * h), p);
+        c.drawBitmap(b, (xc-0.03f * w), (yc-0.045f * h), p);
     }
 }

@@ -35,7 +35,7 @@ public class PacmanView extends View implements Runnable {
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 10);
         computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.computer),90,90,true);
-        chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.chaser),95,95,true);
+        chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.chaser),120,120,true);
     }
 
     @Override

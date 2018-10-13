@@ -1,6 +1,7 @@
 package com.example.jiangxinwei.pacman;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import java.text.DecimalFormat;
@@ -8,6 +9,7 @@ import java.text.DecimalFormat;
 public class Bean {
 
     Pos pos;
+    int pink = Color.rgb(219,112,147);
     public Bean(Pos p) {
         pos = new Pos(p);
     }
@@ -15,6 +17,7 @@ public class Bean {
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
+        p.setColor(pink);
         c.drawCircle(pos.x * w, pos.y * h, 30, p);
     }
 
