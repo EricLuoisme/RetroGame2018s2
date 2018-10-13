@@ -32,6 +32,7 @@ public class PacmanView extends View implements Runnable {
         observers = new ArrayList<GameOver>();
         game = new Game();
 
+        this.setBackgroundColor(Color.rgb(41,36,33));
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 10);
         computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.computer),90,90,true);
@@ -43,11 +44,11 @@ public class PacmanView extends View implements Runnable {
         super.onDraw(canvas);
         int h = canvas.getHeight();
         int w = canvas.getWidth();
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
         paint.setTextSize(37.0f);
         paint.setFakeBoldText(true);
         canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
-        canvas.drawText("Player score :", 0.015f * w, 0.6f * h, paint);
+        canvas.drawText("  Player score :", 0.015f * w, 0.6f * h, paint);
         List<Bitmap> images = new ArrayList<>();
         images.add(chaserImage);
         images.add(computerImage);

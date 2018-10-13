@@ -8,8 +8,11 @@ import java.text.DecimalFormat;
 
 public class Bean {
 
+    public float BEANWIDTH = 20;
+
     Pos pos;
-    int pink = Color.rgb(219,112,147);
+//    int pink = Color.rgb(219,112,147);
+    int pink = Color.rgb(255,0,255);
     public Bean(Pos p) {
         pos = new Pos(p);
     }

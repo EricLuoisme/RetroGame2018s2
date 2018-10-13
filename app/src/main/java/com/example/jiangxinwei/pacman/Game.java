@@ -2,6 +2,7 @@ package com.example.jiangxinwei.pacman;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
@@ -13,20 +14,23 @@ class Game {
 
     public static Walls wallsHorizon;
     public static Walls wallsVertic;
+    public static final int SCOREINCREASE = 10;  //eat one bean, score increases 10
+
     private Beans beans;
     private Chasers chasers;
     private Computer computer;
     private Player player;
     private boolean computerHitByChaser = false;
     private boolean playerHitByChaser = false;
-    private boolean beansEmpty = false;   //when there is no beans, then game finished
+//    private boolean beansEmpty = false;   //when there is no beans, then game finished
     private String computerScore = "0";
     private String playerScore = "0";
     //    private boolean removed;
     private char removedBeans; // 'c' is by computer, 'p' is by player, 'e' is still exist
-    public static final float MAXXY = 1.0f;
-    public static final float MINXY = 0.0f;
-    public static final int SCOREINCREASE = 10;  //eat one bean, score increases 10
+//    public static final float MAXXY = 1.0f;
+//    public static final float MINXY = 0.0f;
+    public int adder = 0;
+
 
 
 
@@ -43,6 +47,7 @@ class Game {
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
+        paint.setColor(Color.rgb(255,153,18));
         canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
         canvas.drawText(playerScore, 0.07f * w, 0.7f * h, paint);
         wallsHorizon.drawH(canvas, paint);
@@ -210,15 +215,17 @@ class Game {
                 if (!hitBoundary(player.pos, 'u', player.STEPY) &&
                         !hitWalls(player.pos, 'u', player.PWIDTH, player.STEPY)) {
                     player.pos.y -= player.STEPY;
+                    player.startAngle = 315;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
                     if (removedBeans == 'p') {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
+                        player.timemer += 1;
                     }
                 } else {
-                    Log.d("I've been hit", "I've been hit");
+//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -226,16 +233,18 @@ class Game {
                 if (!hitBoundary(player.pos, 'd', player.STEPY) &&
                         !hitWalls(player.pos, 'd', player.PWIDTH, player.STEPY)) {
                     player.pos.y += player.STEPY;
+                    player.startAngle = 135;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
                     if (removedBeans == 'p') {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
+                        player.timemer += 1;
                     }
 //                    playerHitByChaser = player.hitByChaser(chasers);
                 } else {
-                    Log.d("I've been hit", "I've been hit");
+//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -243,16 +252,18 @@ class Game {
                 if (!hitBoundary(player.pos, 'l', player.STEPX) &&
                         !hitWalls(player.pos, 'l', player.PWIDTH, player.STEPX)) {
                     player.pos.x -= player.STEPX;
+                    player.startAngle = 225;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
                     if (removedBeans == 'p') {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
+                        player.timemer += 1;
                     }
 //                    playerHitByChaser = player.hitByChaser(chasers);
                 } else {
-                    Log.d("I've been hit", "I've been hit");
+//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -260,16 +271,18 @@ class Game {
                 if (!hitBoundary(player.pos, 'r', player.STEPX) &&
                         !hitWalls(player.pos, 'r', player.PWIDTH, player.STEPX)) {
                     player.pos.x += player.STEPX;
+                    player.startAngle = 45;
 //                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
                     if (removedBeans == 'p') {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
+                        player.timemer += 1;
                     }
 //                    playerHitByChaser = player.hitByChaser(chasers);
                 } else {
-                    Log.d("I've been hit", "I've been hit");
+//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
