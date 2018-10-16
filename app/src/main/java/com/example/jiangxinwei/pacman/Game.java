@@ -105,8 +105,8 @@ class Game {
 
             //check if computer is hit by chasers
             computerHitByChaser = computer.hitByChaser(chasers);
-            playerHitByChaser = player.hitByChaser(chasers);
         }
+        playerHitByChaser = player.hitByChaser(chasers);
 
 
 //        if (beans.size()==0){
