@@ -23,7 +23,7 @@ public class PacmanView extends View implements Runnable {
     Handler repaintHandler;
     Game game;
     ArrayList<GameOver> observers;
-    public static final int STEPDELAY = 1000;
+    public static final int STEPDELAY = 500;
     Bitmap computerImage, chaserImage;
 
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
@@ -34,8 +34,8 @@ public class PacmanView extends View implements Runnable {
 
         this.setBackgroundColor(Color.rgb(41,36,33));
         repaintHandler = new Handler();
-        repaintHandler.postDelayed(this, 10);
-        computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.computer),90,90,true);
+        repaintHandler.postDelayed(this, 500);
+        computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.laptop),90,90,true);
         chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.chaser),120,120,true);
     }
 

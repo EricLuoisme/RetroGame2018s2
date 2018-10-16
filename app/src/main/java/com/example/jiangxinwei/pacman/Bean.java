@@ -20,8 +20,8 @@ public class Bean {
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
-        p.setColor(pink);
-        c.drawCircle(pos.x * w, pos.y * h, 30, p);
+        p.setColor(Color.YELLOW);
+        c.drawCircle(pos.x * w, pos.y * h, 17, p);
     }
 
     public boolean eatby(Computer c) {   //determin if any bean eats by computer
