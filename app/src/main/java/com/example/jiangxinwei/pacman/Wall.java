@@ -20,8 +20,8 @@ public class Wall{
         float top = pos.y * h;
         float right = (pos.x + 0.1f) * w;
         float bottom = (pos.y + 0.02f) * h;
-//        p.setColor(brown);
-        p.setColor(Color.rgb(0,255,255));
+        p.setColor(Color.WHITE);
+//        p.setColor(Color.rgb(0,255,255));
         c.drawRect(left, top, right, bottom, p);
     }
     public void drawVertic(Canvas c, Paint p) {
@@ -32,8 +32,8 @@ public class Wall{
         float top = pos.y * h;
         float right = (pos.x + 0.01f) * w;
         float bottom = (pos.y + 0.2f) * h;
-//        p.setColor(brown);
-        p.setColor(Color.rgb(0,255,255));
+        p.setColor(Color.WHITE);
+//        p.setColor(Color.rgb(0,255,255));
         c.drawRect(left, top, right, bottom, p);
     }
 }
