@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -17,7 +18,16 @@ import java.util.ArrayList;
 
 
 public class Computer extends Sprite{
-    
+
+    public static final float PWIDTH = (1.0f / 55.0f);
+
+    public static int height;
+    public static int width;
+    public static float sweepAngle = 270;
+
+    public float startAngle = 45;
+    public int timemer = 1;
+
     public Computer(){
         pos = new Pos(0.95f, 0.1f);
     }
@@ -29,9 +39,48 @@ public class Computer extends Sprite{
         float xc = pos.x * w;
         float yc = pos.y * h;
 
-        p.setColor(Color.GREEN);
+//        p.setColor(Color.GREEN);
         //c.drawCircle(xc, yc,30, p);
-        c.drawBitmap(b, (xc-0.025f * w), (yc-0.035f * h), p);
+//        c.drawBitmap(b, (xc-0.025f * w), (yc-0.035f * h), p);
+
+        height = c.getHeight();
+        width = c.getWidth();
+
+        // draw body
+        p.setAlpha(255);
+        p.setColor(Color.RED);
+        if (timemer % 2 == 1) {
+            RectF rectF = new RectF((pos.x - PWIDTH) * width, pos.y * height - PWIDTH * width, (pos.x + PWIDTH) * width, pos.y * height + PWIDTH * width);
+            c.drawArc(rectF, startAngle, sweepAngle, true, p);
+        } else {
+            c.drawCircle(pos.x * width, pos.y * height, PWIDTH * width, p);
+        }
+
+        // draw eye
+        Float eye;
+        p.setColor(Color.BLACK);
+        if (startAngle == 315) {
+            eye = (float) (pos.y + 0.75 * PWIDTH) * height;
+        } else {
+            eye = (float) (pos.y - 0.75 * PWIDTH) * height;
+        }
+        c.drawCircle(pos.x * width, eye, 5, p);
+
+        // draw mouth
+        if (timemer % 2 == 0) {
+            p.setStrokeWidth(3);
+            if (startAngle == 45) {
+                c.drawLine(pos.x * width, pos.y * height, pos.x * width + PWIDTH * width, pos.y * height, p);
+            } else if (startAngle == 135) {
+                c.drawLine(pos.x * width, pos.y * height, pos.x * width, pos.y * height + PWIDTH * width, p);
+            } else if (startAngle == 225){
+                c.drawLine(pos.x * width, pos.y * height, pos.x * width - PWIDTH * width, pos.y * height, p);
+            } else {
+                c.drawLine(pos.x * width, pos.y * height, pos.x * width, pos.y * height - PWIDTH * width, p);
+            }
+            timemer += 1;
+        }
+
     }
 
     public boolean hitByChaser(Chasers chasers){
