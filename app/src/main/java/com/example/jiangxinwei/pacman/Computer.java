@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //import static android.support.v4.graphics.drawable.IconCompat.getResources;
 
 
-public class Computer extends Sprite{
+public class Computer extends Sprite {
 
     public static final float PWIDTH = (1.0f / 55.0f);
 
@@ -28,9 +28,10 @@ public class Computer extends Sprite{
     public float startAngle = 45;
     public int timemer = 1;
 
-    public Computer(){
+    public Computer() {
         pos = new Pos(0.95f, 0.1f);
     }
+
     @Override
     public void draw(Canvas c, Paint p, Bitmap b) {
         int h = c.getHeight();
@@ -73,7 +74,7 @@ public class Computer extends Sprite{
                 c.drawLine(pos.x * width, pos.y * height, pos.x * width + PWIDTH * width, pos.y * height, p);
             } else if (startAngle == 135) {
                 c.drawLine(pos.x * width, pos.y * height, pos.x * width, pos.y * height + PWIDTH * width, p);
-            } else if (startAngle == 225){
+            } else if (startAngle == 225) {
                 c.drawLine(pos.x * width, pos.y * height, pos.x * width - PWIDTH * width, pos.y * height, p);
             } else {
                 c.drawLine(pos.x * width, pos.y * height, pos.x * width, pos.y * height - PWIDTH * width, p);
@@ -83,10 +84,10 @@ public class Computer extends Sprite{
 
     }
 
-    public boolean hitByChaser(Chasers chasers){
+    public boolean hitByChaser(Chasers chasers) {
         boolean hit = false;
-        for(Chaser c:chasers){
-            if(c.pos.distance(pos) <= 1.0f/30.0f){
+        for (Chaser c : chasers) {
+            if (c.pos.distance(pos) <= 1.0f / 30.0f) {
                 hit = true;
             }
         }
@@ -99,7 +100,7 @@ public class Computer extends Sprite{
       then computer always move the closest bean in order to get higher mark.
     */
     public void step(Float closeX, Float closeY, ArrayList<String> moveAvoidChaser, ArrayList<String> moveAvoidWall) {
-        DecimalFormat decimalFormat=new DecimalFormat(".00");
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
         String x = decimalFormat.format(pos.x);
         String y = decimalFormat.format(pos.y);
         pos.x = Float.parseFloat(x);
@@ -108,169 +109,166 @@ public class Computer extends Sprite{
         y = decimalFormat.format(closeY);
         closeX = Float.parseFloat(x);
         closeY = Float.parseFloat(y);
-        if(closeX < pos.x && closeY == pos.y){   //in the left
-            if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {    //left is a valid move
+        if (closeX < pos.x && closeY == pos.y) {   //in the left
+            if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {    //left is a valid move
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
-            }
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up"))
-            {
+            } else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
-            }
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")){
+            } else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
-            }
-            else if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")){   //this is the worst case
+            } else if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {   //this is the worst case
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
             }
-        }
-        else if(closeX < pos.x && closeY < pos.y){    //in the left top
+        } else if (closeX < pos.x && closeY < pos.y) {    //in the left top
             //these two are better choices of direction
-            if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
+            if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
-            }
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up"))
-            {
+            } else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
             }
             //these two are worse choices of direction
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")){
+            else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
-            }
-            else if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")){
+            } else if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
             }
             //Log.d("left top", String.valueOf(closeX) + " " + String.valueOf(closeY));
-        }
-        else if(closeX < pos.x && closeY > pos.y){    //in the left bottom
+        } else if (closeX < pos.x && closeY > pos.y) {    //in the left bottom
             //these two are better choices of direction
-            if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
+            if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
-            }
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down"))
-            {
+            } else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
             }
             //these two are worse choices of direction
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")){
+            else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
-            }
-            else if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")){
+            } else if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
             }
             //Log.d("left bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
-        }
-        else if(closeX > pos.x && closeY == pos.y){   //in the right
-            if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
+        } else if (closeX > pos.x && closeY == pos.y) {   //in the right
+            if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
-            }
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up"))
-            {
+            } else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
-            }
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")){
+            } else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
-            }
-            else if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")){ //the worst choice
+            } else if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) { //the worst choice
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "left");
             }
             //Log.d("right", String.valueOf(closeX) + " " + String.valueOf(closeY));
-        }
-        else if(closeX > pos.x && closeY < pos.y){    //in the right top
+        } else if (closeX > pos.x && closeY < pos.y) {    //in the right top
             //these two are better choices of direction
-            if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
+            if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
-            }
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up"))
-            {
+            } else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
             }
             //these two are worse choices of direction
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")){
+            else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
-            }
-            else if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")){
+            } else if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
             }
             //Log.d("right top", String.valueOf(closeX) + " " + String.valueOf(closeY));
-        }
-        else if(closeX > pos.x && closeY > pos.y){    //in the right bottom
+        } else if (closeX > pos.x && closeY > pos.y) {    //in the right bottom
             //these two are better choices of direction
-            if(moveAvoidChaser.contains("right")&& moveAvoidWall.contains("right")) {
+            if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
-            }
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down"))
-            {
+            } else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
             }
             //these two are worse choices of direction
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")){
+            else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
-            }
-            else if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")){
+            } else if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
             }
             //Log.d("right bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
-        }
-        else if(closeX == pos.x && closeY > pos.y){   //on the bottom
-            if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
+        } else if (closeX == pos.x && closeY > pos.y) {   //on the bottom
+            if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) {
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
-            }
-            else if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left"))
-            {
+            } else if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
-            }
-            else if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")){
+            } else if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
-            }
-            else if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")){ //the worst choice
+            } else if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) { //the worst choice
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
             }
             //Log.d("bottom", String.valueOf(closeX) + " " + String.valueOf(closeY));
-        }
-        else if(closeX == pos.x && closeY < pos.y){   //on the top
-            if(moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
+        } else if (closeX == pos.x && closeY < pos.y) {   //on the top
+            if (moveAvoidChaser.contains("up") && moveAvoidWall.contains("up")) {
                 pos.y = pos.y - 0.2f;
+                startAngle = 315;
                 //Log.d("move", "up");
-            }
-            else if(moveAvoidChaser.contains("left") && moveAvoidWall.contains("left"))
-            {
+            } else if (moveAvoidChaser.contains("left") && moveAvoidWall.contains("left")) {
                 pos.x = pos.x - 0.1f;
+                startAngle = 225;
                 //Log.d("move", "left");
-            }
-            else if(moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")){
+            } else if (moveAvoidChaser.contains("right") && moveAvoidWall.contains("right")) {
                 pos.x = pos.x + 0.1f;
+                startAngle = 45;
                 //Log.d("move", "right");
-            }
-            else if(moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")){ //the worst choice
+            } else if (moveAvoidChaser.contains("down") && moveAvoidWall.contains("down")) { //the worst choice
                 pos.y = pos.y + 0.2f;
+                startAngle = 135;
                 //Log.d("move", "down");
             }
             //Log.d("up", String.valueOf(closeX) + " " + String.valueOf(closeY));
@@ -283,8 +281,8 @@ public class Computer extends Sprite{
         validMove.add("right");
         validMove.add("up");
         validMove.add("down");
-        for(Wall w: wallsHorizon){   //horizon wall in on the top or bottom of the computer
-            DecimalFormat decimalFormat=new DecimalFormat(".00");
+        for (Wall w : wallsHorizon) {   //horizon wall in on the top or bottom of the computer
+            DecimalFormat decimalFormat = new DecimalFormat(".00");
             String x = decimalFormat.format(pos.x);
             float computerX = Float.parseFloat(x);
             x = decimalFormat.format(w.pos.x);
@@ -300,17 +298,17 @@ public class Computer extends Sprite{
             //Log.d("wallh", String.valueOf(computerX) + " " + String.valueOf(wallX)+ " " +String.valueOf(computerY) + " " + String.valueOf(wallY));
 //            Log.d("down", String.valueOf(computerY + 0.1));
 //            Log.d("up", String.valueOf(computerY - 0.1));
-            if((diffY == -0.1f && diffX == 0.05f)||computerY + 0.1 >= 0.999f){    //wall is on the bottom
+            if ((diffY == -0.1f && diffX == 0.05f) || computerY + 0.1 >= 0.999f) {    //wall is on the bottom
                 validMove.remove("down");
                 //Log.d("wallh", "remove down");
             }
-            if((diffY == 0.1f && diffX == 0.05f) || computerY - 0.1 <= 0.001f){  //wall is on the top
+            if ((diffY == 0.1f && diffX == 0.05f) || computerY - 0.1 <= 0.001f) {  //wall is on the top
                 validMove.remove("up");
                 //Log.d("wallh", "remove up");
             }
         }
-        for(Wall w: wallsVertic){   //horizon wall in on the top or bottom of the computer
-            DecimalFormat decimalFormat=new DecimalFormat(".00");
+        for (Wall w : wallsVertic) {   //horizon wall in on the top or bottom of the computer
+            DecimalFormat decimalFormat = new DecimalFormat(".00");
             String x = decimalFormat.format(pos.x);
             float computerX = Float.parseFloat(x);
             x = decimalFormat.format(w.pos.x);
@@ -324,11 +322,11 @@ public class Computer extends Sprite{
             y = decimalFormat.format(computerY - wallY);
             float diffY = Float.parseFloat(y);
             //Log.d("wallv", String.valueOf(computerX) + " " + String.valueOf(wallX)+ " " +String.valueOf(computerY) + " " + String.valueOf(wallY));
-            if((diffX == -0.05f && diffY == 0.1f)||computerX + 0.05f >= 0.999f){    //wall is on the right
+            if ((diffX == -0.05f && diffY == 0.1f) || computerX + 0.05f >= 0.999f) {    //wall is on the right
                 validMove.remove("right");
                 //Log.d("wallv", "remove right");
             }
-            if((diffX == 0.05f && diffY == 0.1f)||computerY - 0.05f <= 0.201f){   //wall is on the left
+            if ((diffX == 0.05f && diffY == 0.1f) || computerY - 0.05f <= 0.201f) {   //wall is on the left
                 validMove.remove("left");
                 //Log.d("wallv", "remove left");
             }
@@ -344,9 +342,9 @@ public class Computer extends Sprite{
         validMove.add("up");
         validMove.add("down");
         //Log.d("before move", String.valueOf(validMove.size()));
-        for(Chaser c: chasers){
-            if(c.pos.distance(pos) <= 0.2f){    //computer should not move to the direction of that chaser
-                DecimalFormat decimalFormat=new DecimalFormat(".00");
+        for (Chaser c : chasers) {
+            if (c.pos.distance(pos) <= 0.2f) {    //computer should not move to the direction of that chaser
+                DecimalFormat decimalFormat = new DecimalFormat(".00");
                 String x = decimalFormat.format(pos.x);
                 String y = decimalFormat.format(pos.y);
                 float computerX = Float.parseFloat(x);
@@ -355,32 +353,25 @@ public class Computer extends Sprite{
                 y = decimalFormat.format(c.pos.y);
                 float chaserX = Float.parseFloat(x);
                 float chaserY = Float.parseFloat(y);
-                if(chaserX < computerX && chaserY == computerY){   //in the left
+                if (chaserX < computerX && chaserY == computerY) {   //in the left
                     validMove.remove("left");
-                }
-                else if(chaserX < computerX && chaserY < computerY){    //in the left top
+                } else if (chaserX < computerX && chaserY < computerY) {    //in the left top
                     validMove.remove("left");
                     validMove.remove("up");
-                }
-                else if(chaserX < computerX && chaserY > computerY){    //in the left bottom
+                } else if (chaserX < computerX && chaserY > computerY) {    //in the left bottom
                     validMove.remove("left");
                     validMove.remove("down");
-                }
-                else if(chaserX > computerX && chaserY == computerY){   //in the right
+                } else if (chaserX > computerX && chaserY == computerY) {   //in the right
                     validMove.remove("right");
-                }
-                else if(chaserX > computerX && chaserY < computerY){    //in the right top
+                } else if (chaserX > computerX && chaserY < computerY) {    //in the right top
                     validMove.remove("right");
                     validMove.remove("up");
-                }
-                else if(chaserX > computerX && chaserY > computerY){    //in the right bottom
+                } else if (chaserX > computerX && chaserY > computerY) {    //in the right bottom
                     validMove.remove("right");
                     validMove.remove("down");
-                }
-                else if(chaserX == computerX && chaserY > computerY){   //on the bottom
+                } else if (chaserX == computerX && chaserY > computerY) {   //on the bottom
                     validMove.remove("down");
-                }
-                else if(chaserX ==computerX && chaserY < computerY){   //on the top
+                } else if (chaserX == computerX && chaserY < computerY) {   //on the top
                     validMove.remove("up");
                 }
             }

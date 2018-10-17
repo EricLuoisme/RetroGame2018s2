@@ -151,6 +151,7 @@ class Game {
             removedBeans = beans.removeEatJudge(computer);
             if (removedBeans == 'c') {
                 computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
+                computer.timemer++;
             }
 
             //check if computer is hit by chasers
@@ -377,7 +378,7 @@ class Game {
                     return true;
                 break;
             case 'l':
-                if (pos.x - stepLength < 0.04)
+                if (pos.x - stepLength < 0.16)
                     return true;
                 break;
             case 'r':
