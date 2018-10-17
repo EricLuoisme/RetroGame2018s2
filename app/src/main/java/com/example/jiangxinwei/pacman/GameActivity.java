@@ -21,6 +21,8 @@ public class GameActivity extends AppCompatActivity implements GameOver {
         pacmanView = (PacmanView) findViewById(R.id.pacmanView);
         pacmanView.registerGameOver(this);
         buttonsSettings();
+
+
     }
 
     public void buttonClick(View view) {

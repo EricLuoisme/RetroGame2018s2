@@ -211,6 +211,7 @@ class Game {
      * @param direction
      */
     public void touch(String direction) {
+        Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
         switch (direction) {
             case "u":
                 if (!hitBoundary(player.pos, 'u', player.STEPY) &&
@@ -383,7 +384,7 @@ class Game {
                 break;
             case 'r':
                 if (pos.x + stepLength > 0.96){
-                    Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
+//                    Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
                     return true;
                 }
 

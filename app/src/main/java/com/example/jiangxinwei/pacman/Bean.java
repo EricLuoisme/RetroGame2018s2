@@ -11,7 +11,7 @@ public class Bean {
     public float BEANWIDTH = 20;
 
     Pos pos;
-    int pink = Color.rgb(255,182,193);
+//    int pink = Color.rgb(255,182,193);
 //    int pink = Color.rgb(255,0,255);
     public Bean(Pos p) {
         pos = new Pos(p);

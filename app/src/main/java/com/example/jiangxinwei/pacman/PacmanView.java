@@ -24,6 +24,7 @@ public class PacmanView extends View implements Runnable {
     public static final int STEPDELAY = 500;
     Bitmap computerImage, chaserImage;
 
+
     public PacmanView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();

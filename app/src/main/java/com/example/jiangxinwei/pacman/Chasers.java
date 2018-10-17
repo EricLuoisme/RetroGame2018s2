@@ -12,7 +12,7 @@ public class Chasers extends ArrayList<Chaser> {
 
     private static final float CHASERSTEPX = 0.1f;
     private static final float CHASERSTEPY = 0.2f;
-    private static final int CHASERNUM = 2;
+    private static final int CHASERNUM = 0;
     private static final float CHASERMINX = 0.25f;
     private static final float CHASERMAXX = 0.95f;
     private static final float CHASERMINY = 0.1f;

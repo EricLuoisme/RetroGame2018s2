@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Wall{
-    int brown = Color.rgb(139,69,19);
+//    int brown = Color.rgb(139,69,19);
     Pos pos;
 
     public Wall(Pos p){
