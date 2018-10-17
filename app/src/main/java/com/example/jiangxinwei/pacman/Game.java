@@ -22,42 +22,33 @@ class Game {
     private Player player;
     private boolean computerHitByChaser = false;
     private boolean playerHitByChaser = false;
-    //    private boolean beansEmpty = false;   //when there is no beans, then game finished
+//    private boolean beansEmpty = false;   //when there is no beans, then game finished
     private String computerScore = "0";
     public static String playerScore = "0";
     //    private boolean removed;
     private char removedBeans; // 'c' is by computer, 'p' is by player, 'e' is still exist
-    //    public static final float MAXXY = 1.0f;
+//    public static final float MAXXY = 1.0f;
 //    public static final float MINXY = 0.0f;
     public int adder = 0;
+
+
 
 
     public Game() {
         wallsHorizon = Walls.createWallsHorizon();
         wallsVertic = Walls.createWallsVertic();
-        if (GameActivity.function.equals("practice")) {
-            beans = Beans.createBeansPractice();
-        } else {
-            beans = Beans.createBeansCompete();
-        }
+        beans = Beans.createBeans();
         chasers = new Chasers();
         player = Player.createPlayer();
-        System.out.println(GameActivity.function);
-        if (GameActivity.function.equals("practice")) {
-            computerHitByChaser = true;
-        } else {
-            computer = new Computer();
-        }
+        computer = new Computer();
     }
 
     public void draw(Canvas canvas, Paint paint, List<Bitmap> images) {
         int h = canvas.getHeight();
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
-        paint.setColor(Color.rgb(255, 153, 18));
-        if (GameActivity.function.equals("compete")) {
-            canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
-        }
+        paint.setColor(Color.rgb(255,153,18));
+        canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
         canvas.drawText(playerScore, 0.07f * w, 0.7f * h, paint);
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
@@ -262,7 +253,7 @@ class Game {
                         !hitWalls(player.pos, 'l', player.PWIDTH, player.STEPX)) {
                     player.pos.x -= player.STEPX;
                     player.startAngle = 225;
-                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
+//                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
@@ -352,7 +343,8 @@ class Game {
                     // right situation
                     if (pos.y - width > wall.pos.y && pos.y - width < wall.pos.y + 0.2f)
                         if (pos.x - width < wall.pos.x)
-                            if (pos.x + width + stepLength > wall.pos.x) {
+                            if (pos.x + width + stepLength > wall.pos.x)
+                            {
 //                                Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
 //                                Log.d("Wall: ", "x= " + wall.pos.x + " y= " + wall.pos.y);
                                 return true;
@@ -385,13 +377,12 @@ class Game {
                     return true;
                 break;
             case 'l':
-//                if (pos.x - stepLength < 0.04)
-                if (pos.x - stepLength <= 0.16)
+                if (pos.x - stepLength < 0.04)
                     return true;
                 break;
             case 'r':
-                if (pos.x + stepLength > 0.96) {
-//                    Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
+                if (pos.x + stepLength > 0.96){
+                    Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
                     return true;
                 }
 

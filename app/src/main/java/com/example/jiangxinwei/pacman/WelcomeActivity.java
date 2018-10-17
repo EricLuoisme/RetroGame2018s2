@@ -20,18 +20,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void playGame(View view) {
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("method","compete");
         startActivity(intent);
     }
 
     public void viewInstruction(View view){
         Intent intent = new Intent(this, Instruction.class);
-        startActivity(intent);
-    }
-
-    public void practiceGame(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("method", "practice");
         startActivity(intent);
     }
 }

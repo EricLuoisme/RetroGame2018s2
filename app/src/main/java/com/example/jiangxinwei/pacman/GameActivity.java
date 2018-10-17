@@ -10,14 +10,10 @@ import android.widget.Button;
 public class GameActivity extends AppCompatActivity implements GameOver {
 
     private PacmanView pacmanView;
-    public static String function = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        function = getIntent().getStringExtra("method");
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
