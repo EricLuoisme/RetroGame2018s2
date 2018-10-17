@@ -30,11 +30,11 @@ public class PacmanView extends View implements Runnable {
         observers = new ArrayList<GameOver>();
         game = new Game();
 
-        this.setBackgroundColor(Color.rgb(41,36,33));
+        this.setBackgroundColor(Color.rgb(41, 36, 33));
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 500);
-        computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.laptop),90,90,true);
-        chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.chaser),120,120,true);
+        computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.laptop), 90, 90, true);
+        chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.chaser), 120, 120, true);
     }
 
     @Override
@@ -45,15 +45,13 @@ public class PacmanView extends View implements Runnable {
         paint.setColor(Color.WHITE);
         paint.setTextSize(37.0f);
         paint.setFakeBoldText(true);
-        if(GameActivity.function.equals("compete")) {
-            canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
-        }
+        canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
         canvas.drawText("  Player score :", 0.015f * w, 0.6f * h, paint);
         List<Bitmap> images = new ArrayList<>();
         images.add(chaserImage);
         images.add(computerImage);
         images.add(computerImage);
-        game.draw(canvas, paint,images);
+        game.draw(canvas, paint, images);
     }
 
     public boolean step() {

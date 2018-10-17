@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:onClick="playGame"
-        android:text="COMPETE"
+        android:text="play"
         app:layout_constraintBottom_toTopOf="@+id/button_instruction"
         app:layout_constraintStart_toStartOf="@+id/button_instruction" />
 
@@ -28,21 +28,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button_practice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:onClick="practiceGame"
-        android:text="practice"
-        app:layout_constraintBottom_toTopOf="@+id/play_button"
-        app:layout_constraintStart_toStartOf="@+id/play_button" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="100dp"
         android:text="Welcome to Pac man"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

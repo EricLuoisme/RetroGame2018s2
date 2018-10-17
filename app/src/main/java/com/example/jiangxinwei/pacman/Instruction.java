@@ -21,13 +21,12 @@ public class Instruction extends AppCompatActivity {
 
         TextView instructionText = (TextView)findViewById(R.id.textView_instruction);
         String instruction;
-        instruction = "This game has two mode: Practice and Compete \n\n";
-        instruction += "The Practice mode allow play to play alone\n";
-        instruction += "The Compete mode makes the player to compete with a computer\n\n";
-        instruction += "The four button in the left and right side makes player to control the move direction.\n";
+        instruction = "This is the instruction of the game:\n\n";
+        instruction += "The player is playing with a computer\n\n";
+        instruction += "Control:\n Four button in the left and right side makes player to control the move direction.\n";
         instruction += "The direction of the four button are U: up, D: down, L: left, R: right.\n\n";
-        instruction += "The player has to eat all the beans and not catch by the chasers, \n otherwise the player lose the game. \n";
-        instruction += "When the computer been caught in the Compete mode, \n it just disappear and the game continues.";
+        instruction += "Game Rule: The player has to eat all the beans and not catch by the chasers, \n otherwise the player lose the game. \n";
+        instruction += "When the computer been caught, it just disappear and the game continues.";
 
 
         instructionText.setText(instruction);

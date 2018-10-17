@@ -26,7 +26,7 @@ public class LoseActivity extends AppCompatActivity {
     }
 
     public void ResetGame(View view) {
-        Intent intent = new Intent(this, WelcomeActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 }

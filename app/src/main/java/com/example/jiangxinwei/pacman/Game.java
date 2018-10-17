@@ -37,19 +37,10 @@ class Game {
     public Game() {
         wallsHorizon = Walls.createWallsHorizon();
         wallsVertic = Walls.createWallsVertic();
-        if(GameActivity.function.equals("practice")){
-            beans = Beans.createBeansPractice();
-        } else{
-            beans = Beans.createBeansCompete();
-        }
+        beans = Beans.createBeans();
         chasers = new Chasers();
         player = Player.createPlayer();
-        System.out.println(GameActivity.function);
-        if(GameActivity.function.equals("practice")){
-            computerHitByChaser = true;
-        } else{
-            computer = new Computer();
-        }
+        computer = new Computer();
     }
 
     public void draw(Canvas canvas, Paint paint, List<Bitmap> images) {
@@ -57,9 +48,7 @@ class Game {
         int w = canvas.getWidth();
         paint.setTextSize(50.0f);
         paint.setColor(Color.rgb(255,153,18));
-        if(GameActivity.function.equals("compete")) {
-            canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
-        }
+        canvas.drawText(computerScore, 0.07f * w, 0.2f * h, paint);
         canvas.drawText(playerScore, 0.07f * w, 0.7f * h, paint);
         wallsHorizon.drawH(canvas, paint);
         wallsVertic.drawV(canvas, paint);
