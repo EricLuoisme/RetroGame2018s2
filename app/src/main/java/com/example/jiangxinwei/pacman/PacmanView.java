@@ -62,12 +62,14 @@ public class PacmanView extends View implements Runnable {
             notifyGameOver();
             Intent intent = new Intent(this.getContext(), WonActivity.class);
             intent.putExtra("score", Game.playerScore);
+            Game.playerScore = "0";
             this.getContext().startActivity(intent);
             return false;
         } else if (game.playerLose()) {
             notifyGameOver();
             Intent intent = new Intent(this.getContext(), LoseActivity.class);
             intent.putExtra("score", Game.playerScore);
+            Game.playerScore = "0";
             this.getContext().startActivity(intent);
             return false;
         }
