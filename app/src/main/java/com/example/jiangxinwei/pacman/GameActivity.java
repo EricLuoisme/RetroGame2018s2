@@ -1,7 +1,7 @@
 package com.example.jiangxinwei.pacman;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -10,10 +10,13 @@ import android.widget.Button;
 public class GameActivity extends AppCompatActivity implements GameOver {
 
     private PacmanView pacmanView;
+    public static String function = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        function = getIntent().getStringExtra("method");
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

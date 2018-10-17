@@ -10,9 +10,7 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +45,9 @@ public class PacmanView extends View implements Runnable {
         paint.setColor(Color.WHITE);
         paint.setTextSize(37.0f);
         paint.setFakeBoldText(true);
-        canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
+        if(GameActivity.function.equals("compete")) {
+            canvas.drawText("Computer score :", 0.015f * w, 0.1f * h, paint);
+        }
         canvas.drawText("  Player score :", 0.015f * w, 0.6f * h, paint);
         List<Bitmap> images = new ArrayList<>();
         images.add(chaserImage);
@@ -60,11 +60,15 @@ public class PacmanView extends View implements Runnable {
         game.step();
         if (game.playerWon()) {
             notifyGameOver();
-            this.getContext().startActivity(new Intent(this.getContext(), WonActivity.class));
+            Intent intent = new Intent(this.getContext(), WonActivity.class);
+            intent.putExtra("score", Game.playerScore);
+            this.getContext().startActivity(intent);
             return false;
         } else if (game.playerLose()) {
             notifyGameOver();
-            this.getContext().startActivity(new Intent(this.getContext(), LoseActivity.class));
+            Intent intent = new Intent(this.getContext(), LoseActivity.class);
+            intent.putExtra("score", Game.playerScore);
+            this.getContext().startActivity(intent);
             return false;
         }
         this.invalidate();

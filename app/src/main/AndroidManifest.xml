@@ -27,6 +27,9 @@
         <activity
             android:name=".LoseActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".Instruction"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

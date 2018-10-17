@@ -9,7 +9,34 @@ import java.util.Iterator;
 
 public class Beans extends ArrayList<Bean> {
 
-    public static Beans createBeans() {
+    public static Beans createBeansPractice() {
+        Beans beans = new Beans();
+        //each rows
+        for (float x = 0.35f; x < 1f; x += 0.1f) {
+            //Log.d("beans", String.valueOf(x));
+            Pos p = new Pos(x, 0.1f);
+            beans.add(new Bean(p));
+        }
+        for (float x = 0.25f; x < 1f; x += 0.1f) {
+            Pos p = new Pos(x, 0.3f);
+            beans.add(new Bean(p));
+        }
+        for (float x = 0.25f; x < 1f; x += 0.1f) {
+            Pos p = new Pos(x, 0.5f);
+            beans.add(new Bean(p));
+        }
+        for (float x = 0.25f; x < 1f; x += 0.1f) {
+            Pos p = new Pos(x, 0.7f);
+            beans.add(new Bean(p));
+        }
+        for (float x = 0.25f; x < 1f; x += 0.1f) {
+            Pos p = new Pos(x, 0.9f);
+            beans.add(new Bean(p));
+        }
+        return beans;
+    }
+
+    public static Beans createBeansCompete() {
         Beans beans = new Beans();
         //each rows
         for (float x = 0.35f; x < 0.9f; x += 0.1f) {
