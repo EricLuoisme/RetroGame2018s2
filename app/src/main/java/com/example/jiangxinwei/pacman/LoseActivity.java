@@ -20,7 +20,6 @@ public class LoseActivity extends AppCompatActivity {
 
         TextView tv = (TextView)findViewById(R.id.textView3);
         String s = tv.getText().toString();
-        //System.out.println(getIntent().getStringExtra("score"));
         s = s+ "\n\n Your score is " + getIntent().getStringExtra("score");
         tv.setText(s);
     }

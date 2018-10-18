@@ -13,7 +13,6 @@ public class Beans extends ArrayList<Bean> {
         Beans beans = new Beans();
         //each rows
         for (float x = 0.35f; x < 0.9f; x += 0.1f) {
-            //Log.d("beans", String.valueOf(x));
             Pos p = new Pos(x, 0.1f);
             beans.add(new Bean(p));
         }
@@ -37,12 +36,8 @@ public class Beans extends ArrayList<Bean> {
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        //Log.d("beans", String.valueOf(this.size()));
         paint.setColor(Color.BLUE);
         for (Bean b : this) b.draw(canvas, paint);
-//        Pos p = new Pos(0.5f, 0.1f);
-//        Bean b = new Bean(p);
-//        b.draw(canvas, paint);
     }
 
     public boolean removeEat(Computer c) {

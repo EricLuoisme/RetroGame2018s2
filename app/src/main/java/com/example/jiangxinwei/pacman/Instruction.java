@@ -30,7 +30,6 @@ public class Instruction extends AppCompatActivity {
 
 
         instructionText.setText(instruction);
-        //instructionText.setMaxLines(6);
     }
 
     public void backHome(View view){

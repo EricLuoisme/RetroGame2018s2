@@ -12,7 +12,7 @@ public class Chasers extends ArrayList<Chaser> {
 
     private static final float CHASERSTEPX = 0.1f;
     private static final float CHASERSTEPY = 0.2f;
-    private static final int CHASERNUM = 0;
+    private static final int CHASERNUM = 2;
     private static final float CHASERMINX = 0.25f;
     private static final float CHASERMAXX = 0.95f;
     private static final float CHASERMINY = 0.1f;
@@ -36,22 +36,18 @@ public class Chasers extends ArrayList<Chaser> {
                 switch (validMoves.get(index)){
                     case "Left":
                         chaser.pos.x = chaser.pos.x - CHASERSTEPX;
-                        //Log.d("Move", "Left");
                         break;
 
                     case "Right":
                         chaser.pos.x = chaser.pos.x + CHASERSTEPX;
-                        //Log.d("Move", "Right");
                         break;
 
                     case "Up":
                         chaser.pos.y = chaser.pos.y - CHASERSTEPY;
-                        //Log.d("Move", "Up");
                         break;
 
                     case "Down":
                         chaser.pos.y = chaser.pos.y + CHASERSTEPY;
-                        //Log.d("Move", "Down");
                 }
             }
         }

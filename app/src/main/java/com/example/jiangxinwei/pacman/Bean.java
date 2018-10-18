@@ -11,8 +11,6 @@ public class Bean {
     public float BEANWIDTH = 20;
 
     Pos pos;
-//    int pink = Color.rgb(255,182,193);
-//    int pink = Color.rgb(255,0,255);
     public Bean(Pos p) {
         pos = new Pos(p);
     }
@@ -56,8 +54,6 @@ public class Bean {
         y = decimalFormat.format(computer.pos.y);
         float computerX = Float.parseFloat(x);
         float computerY = Float.parseFloat(y);
-        //Log.d("computer position", String.valueOf(computer.pos.x) + " " + String.valueOf(computer.pos.y));
-        //Log.d("left", String.valueOf(beanX) + " " + String.valueOf(beanY));
         for (Wall w : wallsVertic) {
             x = decimalFormat.format(w.pos.x);
             float wallX = Float.parseFloat(x);
@@ -68,11 +64,9 @@ public class Bean {
             y = decimalFormat.format(beanY - wallY);
             float diffY = Float.parseFloat(y);
             if (diffY == 0.1f && diffX == -0.05f) {
-                //Log.d("right", "true");
                 rightWall = true;
             }
             if (diffY == 0.1f && diffX == 0.05f) {
-                //Log.d("left", "true");
                 leftWall = true;
             }
         }
@@ -85,21 +79,15 @@ public class Bean {
             float diffX = Float.parseFloat(x);
             y = decimalFormat.format(beanY - wallY);
             float diffY = Float.parseFloat(y);
-            //Log.d("wall", String.valueOf(wallX) + " " + String.valueOf(wallY));
-            //Log.d("diffY", String.valueOf(diffY));
             if (diffY == -0.1f && diffX == 0.05f) {    //wall is on the bottom
-                //Log.d("bottom", "true");
                 bottomWall = true;
             }
             if (diffY == 0.1f && diffX == 0.05f) {     //wall is on the top
-                //Log.d("top", "true");
                 upWall = true;
             }
         }
         if (computerX > beanX && computerY == beanY) {   //bean is in the left of computer
-            //Log.d("left", String.valueOf(beanX) + " " + String.valueOf(beanY));
             if (rightWall == true) {
-                //Log.d("rightwall", String.valueOf(beanX) + " " + String.valueOf(beanY));
                 accepted = false;
             }
         } else if (computerX > beanX && computerY < beanY) {    //bean is in the left bottom of computer

@@ -10,11 +10,6 @@ public class Walls extends ArrayList<Wall> {
     public static Walls createWallsHorizon() {
         Walls  wallsH = new Walls();
         //each rows
-//        for(float x = 0.2f; x < 0.95f; x += 0.4f)
-//        {
-//            Pos p = new Pos(x, 0.2f);
-//            wallsH.add(new Wall(p));
-//        }
         for(float x = 0.3f; x < 0.95f; x += 0.3f)
         {
             Pos p = new Pos(x, 0.4f);
@@ -55,11 +50,6 @@ public class Walls extends ArrayList<Wall> {
             Pos p = new Pos(0.8f, y);
             wallsV.add(new Wall(p));
         }
-//        for(float y = 0.2f; y < 0.95f; y += 0.4f)
-//        {
-//            Pos p = new Pos(0.1f, y);
-//            wallsV.add(new Wall(p));
-//        }
         return wallsV;
     }
 

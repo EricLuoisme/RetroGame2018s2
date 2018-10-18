@@ -22,13 +22,9 @@ class Game {
     private Player player;
     private boolean computerHitByChaser = false;
     private boolean playerHitByChaser = false;
-//    private boolean beansEmpty = false;   //when there is no beans, then game finished
     private String computerScore = "0";
     public static String playerScore = "0";
-    //    private boolean removed;
     private char removedBeans; // 'c' is by computer, 'p' is by player, 'e' is still exist
-//    public static final float MAXXY = 1.0f;
-//    public static final float MINXY = 0.0f;
     public int adder = 0;
 
 
@@ -65,53 +61,9 @@ class Game {
         chasers.step();
 
         if (!computerHitByChaser) {   //computer can move if it has not eaten by chaser
-            //Find the closest bean
-//            Float smallestSteps = 50f;
-//            Float steps;
-//            Float closeX = 0f;
-//            Float closeY = 0f;
-//            boolean accepted;
-//            //Log.d("computer position", String.valueOf(computer.pos.x) + " " + String.valueOf(computer.pos.y));
-//            for (Bean b : beans) {
-//                steps = computer.pos.stepCount(b.pos);
-//                //Log.d("close", String.valueOf(b.pos.x) + " " + String.valueOf(b.pos.y));
-//                accepted = b.noWall(computer, wallsHorizon, wallsVertic);
-//                //Log.d("dis", String.valueOf(steps) + " " + String.valueOf(smallestSteps));
-//                if (steps < smallestSteps && accepted) {
-//                    smallestSteps = steps;
-//                    closeX = b.pos.x;
-//                    closeY = b.pos.y;
-//                }
-//            }
-//            //Log.d("final close", String.valueOf(closeX) + " " + String.valueOf(closeY));
-//
-//            //store the valid move for computer to avoid chaser
-//            ArrayList<String> moveAvoidChaser = computer.avoidChaser(chasers);
-//            ArrayList<String> moveAvoidWall = computer.avoidWall(wallsHorizon, wallsVertic);
-//
-//            //Let computer move;
-//            computer.step(closeX, closeY, moveAvoidChaser, moveAvoidWall);
-//
-//            //Remove bean which has been eaten
-////            removed = beans.removeEat(computer);
-////            if (removed == true) {
-////                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
-////            }
-//
-//            removedBeans = beans.removeEatJudge(computer);
-//            if (removedBeans == 'c') {
-//                computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
-//            }
-
-            //check if computer is hit by chasers
             computerHitByChaser = computer.hitByChaser(chasers);
         }
         playerHitByChaser = player.hitByChaser(chasers);
-
-
-//        if (beans.size()==0){
-//
-//        }
     }
 
     /*
@@ -126,19 +78,15 @@ class Game {
             Float closeX = 0f;
             Float closeY = 0f;
             boolean accepted;
-            //Log.d("computer position", String.valueOf(computer.pos.x) + " " + String.valueOf(computer.pos.y));
             for (Bean b : beans) {
                 steps = computer.pos.stepCount(b.pos);
-                //Log.d("close", String.valueOf(b.pos.x) + " " + String.valueOf(b.pos.y));
                 accepted = b.noWall(computer, wallsHorizon, wallsVertic);
-                //Log.d("dis", String.valueOf(steps) + " " + String.valueOf(smallestSteps));
                 if (steps < smallestSteps && accepted) {
                     smallestSteps = steps;
                     closeX = b.pos.x;
                     closeY = b.pos.y;
                 }
             }
-            //Log.d("final close", String.valueOf(closeX) + " " + String.valueOf(closeY));
 
             //store the valid move for computer to avoid chaser
             ArrayList<String> moveAvoidChaser = computer.avoidChaser(chasers);
@@ -153,56 +101,9 @@ class Game {
                 computerScore = String.valueOf(Integer.parseInt(computerScore) + SCOREINCREASE);
                 computer.timemer++;
             }
-
-            //check if computer is hit by chasers
-            //computerHitByChaser = computer.hitByChaser(chasers);
         }
     }
 
-
-    public ArrayList<String> avoidChaser() {      //the computer should avoid chasers
-        ArrayList<String> validMove = new ArrayList<String>();
-        validMove.add("left");
-        validMove.add("right");
-        validMove.add("up");
-        validMove.add("down");
-        //Log.d("before move", String.valueOf(validMove.size()));
-        for (Chaser c : chasers) {
-            if (c.pos.distance(computer.pos) <= 0.2f) {    //computer should not move to the direction of that chaser
-                DecimalFormat decimalFormat = new DecimalFormat(".00");
-                String x = decimalFormat.format(computer.pos.x);
-                String y = decimalFormat.format(computer.pos.y);
-                float computerX = Float.parseFloat(x);
-                float computerY = Float.parseFloat(y);
-                x = decimalFormat.format(c.pos.x);
-                y = decimalFormat.format(c.pos.y);
-                float chaserX = Float.parseFloat(x);
-                float chaserY = Float.parseFloat(y);
-                if (chaserX < computerX && chaserY == computerY) {   //in the left
-                    validMove.remove("left");
-                } else if (chaserX < computerX && chaserY < computerY) {    //in the left top
-                    validMove.remove("left");
-                    validMove.remove("up");
-                } else if (chaserX < computerX && chaserY > computerY) {    //in the left bottom
-                    validMove.remove("left");
-                    validMove.remove("down");
-                } else if (chaserX > computerX && chaserY == computerY) {   //in the right
-                    validMove.remove("right");
-                } else if (chaserX > computerX && chaserY < computerY) {    //in the right top
-                    validMove.remove("right");
-                    validMove.remove("up");
-                } else if (chaserX > computerX && chaserY > computerY) {    //in the right bottom
-                    validMove.remove("right");
-                    validMove.remove("down");
-                } else if (chaserX == computerX && chaserY > computerY) {   //on the bottom
-                    validMove.remove("down");
-                } else if (chaserX == computerX && chaserY < computerY) {   //on the top
-                    validMove.remove("up");
-                }
-            }
-        }
-        return validMove;
-    }
 
     /**
      * responds for pressing moving button
@@ -218,7 +119,6 @@ class Game {
                         !hitWalls(player.pos, 'u', player.PWIDTH, player.STEPY)) {
                     player.pos.y -= player.STEPY;
                     player.startAngle = 315;
-//                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
@@ -226,8 +126,6 @@ class Game {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
                         player.timemer += 1;
                     }
-                } else {
-//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -236,7 +134,6 @@ class Game {
                         !hitWalls(player.pos, 'd', player.PWIDTH, player.STEPY)) {
                     player.pos.y += player.STEPY;
                     player.startAngle = 135;
-//                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
@@ -244,9 +141,6 @@ class Game {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
                         player.timemer += 1;
                     }
-//                    playerHitByChaser = player.hitByChaser(chasers);
-                } else {
-//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -255,7 +149,6 @@ class Game {
                         !hitWalls(player.pos, 'l', player.PWIDTH, player.STEPX)) {
                     player.pos.x -= player.STEPX;
                     player.startAngle = 225;
-//                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
@@ -263,9 +156,6 @@ class Game {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
                         player.timemer += 1;
                     }
-//                    playerHitByChaser = player.hitByChaser(chasers);
-                } else {
-//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -274,7 +164,6 @@ class Game {
                         !hitWalls(player.pos, 'r', player.PWIDTH, player.STEPX)) {
                     player.pos.x += player.STEPX;
                     player.startAngle = 45;
-//                    Log.d("Player pos", "y " + player.pos.y + "  x " + player.pos.x);
                 }
                 if (!playerHitByChaser) {
                     removedBeans = beans.removeEatJudge(player);
@@ -282,9 +171,6 @@ class Game {
                         playerScore = String.valueOf(Integer.parseInt(playerScore) + SCOREINCREASE);
                         player.timemer += 1;
                     }
-//                    playerHitByChaser = player.hitByChaser(chasers);
-                } else {
-//                    Log.d("I've been hit", "I've been hit");
                 }
                 computerStep();
                 break;
@@ -347,8 +233,6 @@ class Game {
                         if (pos.x - width < wall.pos.x)
                             if (pos.x + width + stepLength > wall.pos.x)
                             {
-//                                Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
-//                                Log.d("Wall: ", "x= " + wall.pos.x + " y= " + wall.pos.y);
                                 return true;
                             }
 
@@ -384,7 +268,6 @@ class Game {
                 break;
             case 'r':
                 if (pos.x + stepLength > 0.96){
-//                    Log.d("Player ", "x= " + player.pos.x + " y= " + player.pos.y);
                     return true;
                 }
 
