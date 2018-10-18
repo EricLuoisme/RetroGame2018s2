@@ -292,7 +292,7 @@ public class Computer extends Sprite {
         validMove.add("up");
         validMove.add("down");
         for (Chaser c : chasers) {
-            if (c.pos.distance(pos) <= 0.2f) {    //computer should not move to the direction of that chaser
+            if (c.pos.distance(pos) <= 0.3f) {    //computer should not move to the direction of that chaser
                 DecimalFormat decimalFormat = new DecimalFormat(".00");
                 String x = decimalFormat.format(pos.x);
                 String y = decimalFormat.format(pos.y);
