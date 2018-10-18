@@ -2,6 +2,8 @@ package com.example.jiangxinwei.pacman;
 
 import java.text.DecimalFormat;
 
+// The author of this class file is Xinwei Jiang
+
 public class Pos {
         float x;
         float y;

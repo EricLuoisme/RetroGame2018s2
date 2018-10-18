@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+// The author of this class file is Yikai Luo
+
 public class Player extends Sprite {
 
     public static final float PWIDTH = (1.0f / 55.0f);

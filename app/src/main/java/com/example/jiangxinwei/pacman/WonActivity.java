@@ -8,6 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+// The author of this class file is Xinwei Jiang, Wenjing Xue, Yikai Luo
+
 public class WonActivity extends AppCompatActivity {
 
     @Override

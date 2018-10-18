@@ -14,8 +14,7 @@ import android.util.Log;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-//import static android.support.v4.graphics.drawable.IconCompat.getResources;
-
+// The author of this class file is Xinwei Jiang
 
 public class Computer extends Sprite {
 

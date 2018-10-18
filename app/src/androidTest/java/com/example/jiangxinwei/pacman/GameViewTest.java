@@ -21,6 +21,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+// The author of this test file is Yikai Luo
 @RunWith(AndroidJUnit4.class)
 public class GameViewTest {
 

@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+// The author of this class file is Xinwei Jiang
+
 public class Wall{
 //    int brown = Color.rgb(139,69,19);
     Pos pos;

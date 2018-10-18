@@ -5,6 +5,8 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 
+// The author of this class file is Xinwei Jiang
+
 public class Walls extends ArrayList<Wall> {
 
     public static Walls createWallsHorizon() {

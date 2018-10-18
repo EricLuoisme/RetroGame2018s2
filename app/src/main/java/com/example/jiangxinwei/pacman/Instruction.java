@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+// The author of this class file is Wenjing Xue
 public class Instruction extends AppCompatActivity {
 
     @Override

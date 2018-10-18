@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+// The author of this class file is Xinwei Jiang
+
 public abstract class Sprite {
 
     Pos pos;

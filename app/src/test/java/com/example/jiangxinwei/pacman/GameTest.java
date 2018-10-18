@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+// The author of this test file is Yikai Luo
+
 public class GameTest {
 
     Game gamTest = new Game();

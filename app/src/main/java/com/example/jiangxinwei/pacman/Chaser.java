@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+// The author of this class file is Wenjing Xue
 public class Chaser extends Sprite {
 
     private static final float CHASERRADIUS = (1.0f / 55.0f);

@@ -6,6 +6,8 @@ import android.graphics.Paint;
 
 import java.text.DecimalFormat;
 
+// The author of this class file is Xinwei Jiang
+
 public class Bean {
 
     public float BEANWIDTH = 20;

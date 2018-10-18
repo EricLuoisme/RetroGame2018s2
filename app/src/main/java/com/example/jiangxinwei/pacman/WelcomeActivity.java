@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+// The author of this class file is Xinwei Jiang, Wenjing Xue
+
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override

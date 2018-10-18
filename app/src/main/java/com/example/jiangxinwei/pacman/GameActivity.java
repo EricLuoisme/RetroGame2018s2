@@ -7,6 +7,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+// The author of this class file is Xinwei Jiang, Wenjing Xue, Yikai Luo
+// If not specifically mention, the author is three members
+
 public class GameActivity extends AppCompatActivity implements GameOver {
 
     private PacmanView pacmanView;
@@ -25,6 +28,7 @@ public class GameActivity extends AppCompatActivity implements GameOver {
 
     }
 
+    // The author of this function is Yikai Luo
     public void buttonClick(View view) {
         switch (view.getId()) {
             case R.id.buttonUp:
@@ -42,6 +46,7 @@ public class GameActivity extends AppCompatActivity implements GameOver {
         }
     }
 
+    // The author of this function is Yikai Luo
     private void buttonsSettings() {
         Button u = findViewById(R.id.buttonUp);
         u.getBackground().setAlpha(70);

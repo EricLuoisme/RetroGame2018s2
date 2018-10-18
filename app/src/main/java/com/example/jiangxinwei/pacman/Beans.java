@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+// The author of this class file is Xinwei Jiang
+
 public class Beans extends ArrayList<Bean> {
 
     public static Beans createBeans() {

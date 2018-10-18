@@ -15,6 +15,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+// The author of this class file is Xinwei Jiang, Wenjing Xue, Yikai Luo
 
 public class PacmanView extends View implements Runnable {
     Paint paint;
@@ -52,6 +53,7 @@ public class PacmanView extends View implements Runnable {
         images.add(chaserImage);
         images.add(chaserImage);
         game.draw(canvas, paint, images);
+
     }
 
     public boolean step() {

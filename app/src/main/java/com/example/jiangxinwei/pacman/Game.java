@@ -10,6 +10,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+// The author of this class file is Xinwei Jiang, Wenjing Xue, Yikai Luo
+// If not specifically mention, the author is three members
+
 class Game {
 
     public static Walls wallsHorizon;
@@ -26,8 +29,6 @@ class Game {
     public static String playerScore = "0";
     private char removedBeans; // 'c' is by computer, 'p' is by player, 'e' is still exist
     public int adder = 0;
-
-
 
 
     public Game() {
@@ -54,6 +55,7 @@ class Game {
         if (!computerHitByChaser) {
             computer.draw(canvas, paint, images.get(2));
         }
+
     }
 
     public void step() {
@@ -66,6 +68,7 @@ class Game {
         playerHitByChaser = player.hitByChaser(chasers);
     }
 
+    // The author of this function is Xinwei Jiang
     /*
        this function will be call when player moves.
        for the fairness, player moves one step computer moves one step
@@ -104,7 +107,7 @@ class Game {
         }
     }
 
-
+    // The author of this function is Yikai Luo
     /**
      * responds for pressing moving button
      * -input only legal with "u", "d", "l", "r"
@@ -177,6 +180,7 @@ class Game {
         }
     }
 
+    // The author of this function is Yikai Luo
     /**
      * Return whether the input item's next position would hit the wall or not
      *
@@ -243,6 +247,7 @@ class Game {
         return false;
     }
 
+    // The author of this function is Yikai Luo
     /**
      * check whether input item's next position would hit the boundary or not
      *

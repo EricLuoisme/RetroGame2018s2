@@ -8,6 +8,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Random;
 
+// The author of this class file is Wenjing Xue
+
 public class Chasers extends ArrayList<Chaser> {
 
     private static final float CHASERSTEPX = 0.1f;
