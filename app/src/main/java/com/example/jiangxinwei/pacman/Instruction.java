@@ -22,6 +22,8 @@ public class Instruction extends AppCompatActivity {
 
         TextView instructionText = (TextView)findViewById(R.id.textView_instruction);
         String instruction;
+
+        // Explain the rule and control of the game
         instruction = "This is the instruction of the game:\n\n";
         instruction += "The player is playing with a computer\n\n";
         instruction += "Control:\n Four button in the left and right side makes player to control the move direction.\n";
@@ -33,6 +35,7 @@ public class Instruction extends AppCompatActivity {
         instructionText.setText(instruction);
     }
 
+    // after review the instruction, return to the welcome activity
     public void backHome(View view){
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
