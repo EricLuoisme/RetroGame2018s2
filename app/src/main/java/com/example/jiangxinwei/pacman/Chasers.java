@@ -31,8 +31,11 @@ public class Chasers extends ArrayList<Chaser> {
             this.add(new Chaser(new Pos(0.55f, 0.5f)));
         } else {
             for(Chaser chaser: this){
+
+                // get the next valid moves of each chaser
                 ArrayList<String> validMoves = validMove(chaser);
 
+                // randomly choose a next valid move of each chaser
                 int num = validMoves.size();
                 int index = random.nextInt(num);
                 switch (validMoves.get(index)){
@@ -76,6 +79,7 @@ public class Chasers extends ArrayList<Chaser> {
         position.add("Down");
 
         Pos current = new Pos(chaser.pos.x, chaser.pos.y);
+        // use the next possible position to judge whether it hit walls or out boundary to get the next valid position
         Pos after;
         after = new Pos(chaser.pos.x - CHASERSTEPX / 2, chaser.pos.y);
         if(outBoundary(after) || hitVerticWalls(after)){
