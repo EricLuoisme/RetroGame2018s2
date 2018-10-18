@@ -34,7 +34,6 @@ public class PacmanView extends View implements Runnable {
         this.setBackgroundColor(Color.rgb(41, 36, 33));
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, 500);
-        computerImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.laptop), 90, 90, true);
         chaserImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.chaser), 120, 120, true);
     }
 
@@ -50,8 +49,8 @@ public class PacmanView extends View implements Runnable {
         canvas.drawText("  Player score :", 0.015f * w, 0.6f * h, paint);
         List<Bitmap> images = new ArrayList<>();
         images.add(chaserImage);
-        images.add(computerImage);
-        images.add(computerImage);
+        images.add(chaserImage);
+        images.add(chaserImage);
         game.draw(canvas, paint, images);
     }
 
