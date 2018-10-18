@@ -39,7 +39,8 @@ public class Bean {
         }
         return eat;
     }
-
+    
+    // This function will be called when computer needs to find the closest bean 
     public boolean noWall(Computer computer, Walls wallsHorizon, Walls wallsVertic) {
         boolean accepted = true;
         boolean leftWall = false;
