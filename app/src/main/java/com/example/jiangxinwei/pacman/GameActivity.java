@@ -53,6 +53,10 @@ public class GameActivity extends AppCompatActivity implements GameOver {
         r.getBackground().setAlpha(70);
     }
 
+    public PacmanView getPacmanView() {
+        return pacmanView;
+    }
+
     @Override
     public void gameOver() {
         setResult(AppCompatActivity.RESULT_OK);

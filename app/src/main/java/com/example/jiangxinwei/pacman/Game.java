@@ -393,6 +393,9 @@ class Game {
         return false;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 
     public boolean playerWon() {
         if (!playerHitByChaser)
